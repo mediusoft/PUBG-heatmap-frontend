@@ -58,6 +58,44 @@ A React jobsearch template pack featuring a modern design system <br />  and lot
 
 <br />
 
+## 💰 Donations
+
+This project needs you! If you would like to support this project's further development, the creator of this project or the continuous maintenance of this project, feel free to donate. Your donation is highly appreciated (and I love food, coffee and beer). Thank you!
+
+**PayPal**
+
+- **[Donate \$5](https://www.paypal.me/OrkhanR/5)**: Thank's for creating this project, here's a tea (or some juice) for you!
+- **[Donate \$10](https://www.paypal.me/OrkhanR/10)**: Wow, I am stunned. Let me take you to the movies!
+- **[Donate \$15](https://www.paypal.me/OrkhanR/15)**: I really appreciate your work, let's grab some lunch!
+- **[Donate \$25](https://www.paypal.me/OrkhanR/25)**: That's some awesome stuff you did right there, dinner is on me!
+- **[Donate \$50](https://www.paypal.me/OrkhanR/50)**: I really really want to support this project, great job!
+- **[Donate \$100](https://www.paypal.me/OrkhanR/100)**: You are the man! This project saved me hours (if not days) of struggle and hard work, simply awesome!
+- **[Donate \$2799](https://www.paypal.me/OrkhanR/2799)**: Go buddy, buy Macbook Pro for yourself!
+
+Of course, you can also choose what you want to donate, all donations are awesome!
+
+## 👨 Developed By
+
+```
+Orkhan Rzazade
+```
+
+GDE (Google Developer Expert) for Flutter. Passionate #Flutter, #Android Developer. #Entrepreneur #YouTuber
+
+<a href="https://play.google.com/store/apps/dev?id=7703305844118303242&hl=en"><img src="https://github.com/aritraroy/social-icons/blob/master/play-store-icon.png?raw=true" width="60"></a> <a href="https://medium.com/@imthepk"><img src="https://github.com/aritraroy/social-icons/blob/master/medium-icon.png?raw=true" width="60"></a>
+<a href="https://twitter.com/imthepk"><img src="https://github.com/aritraroy/social-icons/blob/master/twitter-icon.png?raw=true" width="60"></a>
+<a href="https://linkedin.com/in/imthepk"><img src="https://github.com/aritraroy/social-icons/blob/master/linkedin-icon.png?raw=true" width="60"></a>
+<a href="https://facebook.com/imthepk"><img src="https://github.com/aritraroy/social-icons/blob/master/facebook-icon.png?raw=true" width="60"></a>
+<a href="https://instagram.com/codepur_ka_superhero"><img src="https://github.com/aritraroy/social-icons/blob/master/instagram-icon.png?raw=true" width="60"></a>
+
+# 👍 How to Contribute
+
+1. Fork it
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create new Pull Request
+
 ### Available Scripts
 
 ### `npm start`
