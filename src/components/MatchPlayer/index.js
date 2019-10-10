@@ -1,0 +1,219 @@
+import React from "react";
+import { xor, union, difference, merge, cloneDeep, set } from "lodash";
+import { Grid, Card, CardContent, Typography } from "@material-ui/core";
+import * as Options from "./Options";
+import Map from "./Map";
+import Roster from "./Roster/index";
+import TimeTracker from "./Time/TimeTracker";
+import { TimeSlider } from "./Time/TimeSlider";
+import { MapSettings } from "./map-settings";
+import MatchInfo from "./MatchInfo";
+
+// -----------------------------------------------------------------------------
+// Styled Components -----------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+class MatchPlayer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mapSize: 0,
+      focusedPlayer: props.playerName,
+      // See getDerivedStateFromProps
+      prevPlayerName: props.playerName,
+      hoveredPlayer: null,
+      trackedPlayers: [],
+      options: Options.DEFAULT_OPTIONS,
+      setOption: null
+    };
+  }
+
+  marks = {
+    focusedPlayer: () => this.state.focusedPlayer,
+    isPlayerFocused: playerName => this.state.focusedPlayer === playerName,
+
+    hoveredPlayer: () => this.state.hoveredPlayer,
+    isPlayerHovered: playerName => this.state.hoveredPlayer === playerName,
+    setHoveredPlayer: playerName => this.setState({ hoveredPlayer: playerName }),
+
+    trackedPlayers: () => this.state.trackedPlayers,
+    isPlayerTracked: playerName => this.state.trackedPlayers.includes(playerName),
+    toggleTrackedPlayer: (...playerNames) => {
+      this.setState(({ trackedPlayers }) => {
+        if (playerNames.length > 1 && difference(playerNames, trackedPlayers).length !== 0) {
+          return {
+            trackedPlayers: union(trackedPlayers, playerNames)
+          };
+        }
+
+        return {
+          trackedPlayers: xor(trackedPlayers, playerNames)
+        };
+      });
+    }
+  };
+
+  // -------------------------------------------------------------------------
+  // Map Sizing, Lifecycle ---------------------------------------------------
+  // -------------------------------------------------------------------------
+
+  // https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+  // HACK-ish. Should probably turn this into a controlled component.
+  // The functionality isn't needed right now, but I'd rather not break it.
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.prevPlayerName !== nextProps.playerName) {
+      return {
+        focusedPlayer: nextProps.playerName,
+        prevPlayerName: nextProps.playerName
+      };
+    }
+
+    return null;
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.updateMapSize.bind(this));
+    this.updateMapSize();
+    this.loadOptions();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.updateMapSize();
+  }
+
+  loadOptions = () => {
+    const localOptions = JSON.parse(localStorage.getItem(Options.STORAGE_KEY) || "{}");
+    const options = merge(Options.DEFAULT_OPTIONS, localOptions);
+    const setOption = (key, val) => {
+      this.setState(prevState => {
+        const newOptions = cloneDeep(prevState.options);
+        set(newOptions, key, val);
+        localStorage.setItem(Options.STORAGE_KEY, JSON.stringify(newOptions));
+        return { options: newOptions };
+      });
+    };
+
+    this.setState({ options, setOption });
+  };
+
+  updateMapSize = () => {
+    const stageWrapper = document.getElementById("StageWrapper");
+
+    if (stageWrapper) {
+      this.setState(ps => {
+        if (ps.mapSize !== stageWrapper.clientWidth) {
+          return { mapSize: stageWrapper.clientWidth };
+        }
+
+        return null;
+      });
+    }
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateMapSize.bind(this));
+  }
+
+  // -------------------------------------------------------------------------
+  // Render ------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+
+  render() {
+    const { match, rawTelemetry, telemetry, rosters, globalState } = this.props;
+    const { mapSize, options, setOption, prevPlayerName } = this.state;
+    return (
+      <Options.Context.Provider value={{ options, setOption }}>
+        <CardContent style={{ padding: "35px" }}>
+          <TimeTracker
+            options={options}
+            durationSeconds={match.durationSeconds + 5}
+            telemetry={telemetry}
+            render={({ msSinceEpoch, timeControls, currentTelemetry }) => (
+              <Grid container id="MatchContainer" justify="center" spacing={3}>
+                <Grid md={3} item>
+                  <Card raised style={{ overflowY: "auto", height: "80vh" }}>
+                    <CardContent>
+                      <Grid
+                        container
+                        alignItems="flex-start"
+                        alignContent="flex-start"
+                        item
+                        xs={12}
+                        spacing={1}
+                      >
+                        <Grid item xs={12}>
+                          <Card>
+                            <MatchInfo
+                              match={match}
+                              marks={this.marks}
+                              rawTelemetry={rawTelemetry}
+                              playerName={prevPlayerName}
+                            />
+                          </Card>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Card style={{ width: "100%", overflow: "initial" }}>
+                            <CardContent>
+                              <TimeSlider
+                                value={msSinceEpoch}
+                                stopAutoplay={timeControls.stopAutoplay}
+                                onChange={timeControls.setMsSinceEpoch}
+                                durationSeconds={match.durationSeconds + 5}
+                                globalState={globalState}
+                                options={options}
+                              />
+                            </CardContent>
+                          </Card>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Card>
+                            <MapSettings />
+                          </Card>
+                        </Grid>
+                      </Grid>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid container justify="center" id="MapContainer" item md={5}>
+                  <Card raised style={{ width: "80vh" }}>
+                    <Map
+                      playerName={prevPlayerName}
+                      rawTelemetry={rawTelemetry}
+                      match={match}
+                      telemetry={currentTelemetry}
+                      mapSize={mapSize}
+                      marks={this.marks}
+                      options={options}
+                      msSinceEpoch={msSinceEpoch}
+                    />
+                  </Card>
+                </Grid>
+
+                <Grid md={3} item>
+                  <Card raised style={{ overflowY: "scroll", height: "80vh" }}>
+                    <CardContent>
+                      <Typography align="center" variant="h6">
+                        Name / Kills / Damage
+                      </Typography>
+                      <Grid container direction="column" justify="flex-start" spacing={1}>
+                        <Roster
+                          match={match}
+                          telemetry={currentTelemetry}
+                          rosters={rosters}
+                          marks={this.marks}
+                        />
+                      </Grid>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            )}
+          />
+        </CardContent>
+      </Options.Context.Provider>
+    );
+  }
+}
+
+export default MatchPlayer;

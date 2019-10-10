@@ -1,0 +1,44 @@
+{
+    "editor.fontLigatures": true,
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": false,
+    "editor.formatOnSave": true,
+    // disable editor formatting, so eslint can handle it
+    "[javascript]": {
+        "editor.formatOnSave": false,
+    },
+    // available through eslint plugin in vscode
+    "eslint.autoFixOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "eslint.packageManager": "yarn",
+    "javascript.format.enable": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "git.autofetch": true,
+    "emmet.triggerExpansionOnTab": true,
+    "npm.enableScriptExplorer": true,
+    "window.zoomLevel": 0,
+    "breadcrumbs.enabled": true,
+    "extensions.ignoreRecommendations": true,
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.rendererType": "dom",
+    "material-icon-theme.activeIconPack": "react_redux",
+    "material-icon-theme.files.associations": {
+        "saga.js": "redux-action",
+        "*.service.js": "apiblueprint",
+        "environment.js": "tune",
+        "MainStackNavigator.js": "routing"
+    },
+    "material-icon-theme.folders.associations": {
+        "redux": "redux-reducer",
+        "sagas": "redux-action",
+        "services": "global",
+        "services.ui": "helper",
+        "utils": "tools",
+        "navigation": "routes",
+        "boot": "core"
+    },
+    "react-native.packager.port": 19001
+}

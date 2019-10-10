@@ -1,0 +1,11 @@
+{
+  "presets": ["@babel/preset-flow"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src"]
+      }
+    ]
+  ]
+}
