@@ -1,10 +1,10 @@
 <p align="center">
-<a href="https://designrevision.com/downloads/shards-dashboard-lite-react/">
+<a href="https://reactjs.org">
 <img src="https://i1.wp.com/storage.googleapis.com/blog-images-backup/1*c1duI8rwtQygnJem9RyYUg.png?resize=700%2C235&ssl=1" width="250" />
 </a>
 </p>
 
-<h1 align="center" style="border-bottom: none !important; margin-bottom: 5px !important;"><a href="https://designrevision.com/downloads/shards-dashboard-lite-react/">Job Search Template React</a></h1>
+<h1 align="center" style="border-bottom: none !important; margin-bottom: 5px !important;"><a href="https://pubgheatmap.net">An analytic tool for Player Unknown's Battle Ground -PUBG</a></h1>
 <p align="center">
   <a href="#">
     <img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" />
@@ -20,7 +20,7 @@ A React jobsearch template pack featuring a modern design system <br />  and lot
 
 <br />
 
-> ✨ **Note:** You can buy the this template from the official product page.
+> ✨ **Note:** This library is based on [pubgsh/client](https://github.com/pubgsh/client) with more features and new cool design.
 
 <br />
 
