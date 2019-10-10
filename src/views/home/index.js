@@ -73,7 +73,7 @@ export function Home() {
     }
   });
   if (loading) return <Spinner />;
-  const sm = data ? data.samplematch : {};
+  const sm = data ? data.sampleMatch : {};
   return (
     <Card className={classes.root} style={{ borderRadius: "0px" }}>
       <Grid item container justify="center" alignItems="center">

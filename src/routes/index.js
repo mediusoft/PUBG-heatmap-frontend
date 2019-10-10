@@ -5,6 +5,7 @@ import { Spinner } from "components";
 import * as Settings from "contexts/settings";
 import history from "browser-history";
 import { Analytics } from "lib/analytics";
+import moment from "moment";
 
 const SignIn = React.lazy(() => import("views/auth").then(module => ({ default: module.SignIn })));
 const SignUp = React.lazy(() => import("views/auth").then(module => ({ default: module.SignIn })));
@@ -20,7 +21,7 @@ const Routes = () => {
   const toggleFavoritePlayer = (name, shardId) => {
     const newFavs = favoritePlayers.some(f => f.name === name && f.shardId === shardId)
       ? favoritePlayers.filter(f => !(f.name === name && f.shardId === shardId))
-      : [...favoritePlayers, { name, shardId }];
+      : [...favoritePlayers, { name, shardId, createdAt: moment().format("DD-MM-YYYY H:mm") }];
 
     setFavoritePlayers(newFavs);
   };
