@@ -110,13 +110,13 @@ export const Match = ({ match }) => {
   let content;
 
   if (loading) {
-    content = <Spinner />;
+    content = <Spinner title="Loading match data..." />;
   } else if (error || telemetryError) {
     content = <div>An error occurred :(</div>;
   } else if (!data.match) {
     content = <div>Match not found</div>;
   } else if (!telemetryLoaded) {
-    content = <Spinner />;
+    content = <Spinner disableShrink title="Loading telemetry data..." />;
   } else {
     content = (
       <MatchPlayer

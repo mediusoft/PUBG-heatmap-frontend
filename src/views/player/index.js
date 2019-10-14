@@ -53,7 +53,7 @@ export const Player = ({ match }) => {
     }
   });
 
-  if (loading) return <Spinner />;
+  if (loading) return <Spinner title="Loading player data..." />;
   if (error) return <p>An error occurred :(</p>;
 
   if (!data || !data.player || (isEmpty(data.player.matches) && !data.player.rateLimitReset)) {

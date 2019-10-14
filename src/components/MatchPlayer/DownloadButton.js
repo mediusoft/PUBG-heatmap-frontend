@@ -1,13 +1,14 @@
 import React from "react";
 import { downloadJSON, LOCAL_REPLAY_VERSION } from "lib/match-export";
 import styled from "styled-components";
+import { Icon } from "@material-ui/core";
 import MapButton from "../MapButton";
 
 const DownloadIcon = styled(MapButton)`
   top: 63px;
   right: 50px;
   z-index: 998;
-
+  color: "#fff";
   @media (-moz-touch-enabled: 1), (pointer: coarse) {
     display: none;
   }
@@ -28,7 +29,7 @@ class DownloadButton extends React.PureComponent {
   render() {
     return (
       <DownloadIcon onClick={this.downloadMatch}>
-        <i className="fi-download" />
+        <Icon>cloud_download</Icon>
       </DownloadIcon>
     );
   }

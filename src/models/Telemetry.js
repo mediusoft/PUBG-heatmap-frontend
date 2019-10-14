@@ -69,13 +69,13 @@ export default function Telemetry(state) {
   };
 
   const getBeforeLocations = interval => {
-    console.log("asda", interval);
+    console.log("getsasa", interval);
     const { playerLocations } = state[interval];
     const playerNames = Object.keys(playerLocations);
     const nameCounts = playerNames.length;
     const locations = [];
 
-    for (let i = 10; i < interval - 1; i += 8) {
+    for (let i = 10; i < interval - 1; i += 1) {
       const s = state[i];
 
       for (let j = 0; j < nameCounts; j++) {
@@ -93,10 +93,9 @@ export default function Telemetry(state) {
   };
 
   const stateBefore = msSinceEpoch => {
-    console.log("msc", msSinceEpoch);
     const interval = Math.floor(msSinceEpoch / 100);
 
-    const beforeLocations = getBeforeLocations(interval);
+    const allLocations = getBeforeLocations(interval);
     const s = state[interval];
 
     // Overwrite player pointer records with interpolated values. This will generate the correct value
@@ -118,7 +117,7 @@ export default function Telemetry(state) {
           isAlive: player.health > 0
         };
 
-        s.allLocations = beforeLocations;
+        s.allLocations = allLocations;
       }
     });
 

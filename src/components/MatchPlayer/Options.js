@@ -22,6 +22,13 @@ export const DEFAULT_OPTIONS = {
       deadTeammate: "#FF5ABA",
       knocked: "#E6B476"
     }
+  },
+  settings: {
+    isHeatmapActive: true,
+    isSafeZoneActive: true,
+    isBlueZoneActive: true,
+    isRedZoneActive: true,
+    isPlayersActive: true
   }
 };
 

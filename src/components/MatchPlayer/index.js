@@ -19,6 +19,7 @@ class MatchPlayer extends React.Component {
 
     this.state = {
       mapSize: 0,
+      getAllUntillMsSinceEpoch: false,
       focusedPlayer: props.playerName,
       // See getDerivedStateFromProps
       prevPlayerName: props.playerName,
@@ -78,14 +79,24 @@ class MatchPlayer extends React.Component {
     this.loadOptions();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this.updateMapSize();
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateMapSize.bind(this));
+  }
+
+  setGettingAll = value => this.setState({ getAllUntillMsSinceEpoch: value });
 
   loadOptions = () => {
     const localOptions = JSON.parse(localStorage.getItem(Options.STORAGE_KEY) || "{}");
     const options = merge(Options.DEFAULT_OPTIONS, localOptions);
     const setOption = (key, val) => {
+      // TODO : think again
+      if (key === "settings.isHeatmapActive" && val) {
+        this.setGettingAll(val);
+      }
       this.setState(prevState => {
         const newOptions = cloneDeep(prevState.options);
         set(newOptions, key, val);
@@ -111,22 +122,20 @@ class MatchPlayer extends React.Component {
     }
   };
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateMapSize.bind(this));
-  }
-
   // -------------------------------------------------------------------------
   // Render ------------------------------------------------------------------
   // -------------------------------------------------------------------------
 
   render() {
     const { match, rawTelemetry, telemetry, rosters, globalState } = this.props;
-    const { mapSize, options, setOption, prevPlayerName } = this.state;
+    const { mapSize, getAllUntillMsSinceEpoch, options, setOption, prevPlayerName } = this.state;
     return (
       <Options.Context.Provider value={{ options, setOption }}>
         <CardContent style={{ padding: "35px" }}>
           <TimeTracker
             options={options}
+            getAllUntillMsSinceEpoch={getAllUntillMsSinceEpoch}
+            setGettingAll={this.setGettingAll}
             durationSeconds={match.durationSeconds + 5}
             telemetry={telemetry}
             render={({ msSinceEpoch, timeControls, currentTelemetry }) => (
