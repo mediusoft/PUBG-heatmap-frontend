@@ -91,11 +91,42 @@ Of course, you can also choose what you want to donate, all donations are awesom
 
 Senior software developer with more than 5 years of experience. Passionate about #Asp.Net, #React and #React-Native.
 
-<a href="https://play.google.com/store/apps/dev?id=7703305844118303242&hl=en"><img src="https://github.com/aritraroy/social-icons/blob/master/play-store-icon.png?raw=true" width="60"></a> <a href="https://medium.com/@imthepk"><img src="https://github.com/aritraroy/social-icons/blob/master/medium-icon.png?raw=true" width="60"></a>
-<a href="https://twitter.com/imthepk"><img src="https://github.com/aritraroy/social-icons/blob/master/twitter-icon.png?raw=true" width="60"></a>
-<a href="https://linkedin.com/in/imthepk"><img src="https://github.com/aritraroy/social-icons/blob/master/linkedin-icon.png?raw=true" width="60"></a>
-<a href="https://facebook.com/imthepk"><img src="https://github.com/aritraroy/social-icons/blob/master/facebook-icon.png?raw=true" width="60"></a>
-<a href="https://instagram.com/codepur_ka_superhero"><img src="https://github.com/aritraroy/social-icons/blob/master/instagram-icon.png?raw=true" width="60"></a>
+<a
+ target="_blank"
+ rel="noopener noreferrer"
+ href="https://play.google.com/store/apps/details?id=com.mediusoft.jobyfy&hl=az">
+<img
+   src="https://github.com/aritraroy/social-icons/blob/master/play-store-icon.png?raw=true"
+   width="60"
+ /></a><a
+ target="_blank"
+ rel="noopener noreferrer"
+ href="https://twitter.com/O_Rzazade">
+<img
+   src="https://github.com/aritraroy/social-icons/blob/master/twitter-icon.png?raw=true"
+   width="60"
+ /></a><a
+ target="_blank"
+ rel="noopener noreferrer"
+ href="https://www.linkedin.com/in/orxan-rzazade/">
+<img
+   src="https://github.com/aritraroy/social-icons/blob/master/linkedin-icon.png?raw=true"
+   width="60"
+ /></a><a
+ target="_blank"
+ rel="noopener noreferrer"
+ href="https://www.facebook.com/o.rzazade">
+<img
+   src="https://github.com/aritraroy/social-icons/blob/master/facebook-icon.png?raw=true"
+   width="60"
+ /></a><a
+ target="_blank"
+ rel="noopener noreferrer"
+ href="https://www.instagram.com/orkhan_rzazadeh/">
+<img
+   src="https://github.com/aritraroy/social-icons/blob/master/instagram-icon.png?raw=true"
+   width="60"
+ /></a>
 
 # 👍 How to Contribute
 
