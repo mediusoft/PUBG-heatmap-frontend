@@ -5,7 +5,7 @@ import { Icon } from "@material-ui/core";
 import MapButton from "../MapButton";
 
 const DownloadIcon = styled(MapButton)`
-  top: 63px;
+  top: 15px;
   right: 50px;
   z-index: 998;
   color: "#fff";

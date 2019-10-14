@@ -27,7 +27,11 @@ class MatchInfo extends React.PureComponent {
             </Avatar>
           </ListItemAvatar>
           <ListItemText
-            primary={<Typography variant="h6">{playedAt}</Typography>}
+            primary={
+              <Typography variant="body1">
+                <strong>{playedAt}</strong>
+              </Typography>
+            }
             secondary={
               <Typography variant="inherit">
                 <strong>{stats.winPlace}</strong>

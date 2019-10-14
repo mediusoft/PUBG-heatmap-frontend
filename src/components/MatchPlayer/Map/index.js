@@ -246,10 +246,11 @@ class Map extends React.Component {
             </Layer>
           )}
         </StyledStage>
-        {options.settings.isHeatmapActive && mapSize && (
+        {mapSize && (
           <HeatMap
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...{ pubgMapSize, mapSize, mapScale, offsetX, offsetY }}
+            isHeatmapActive={options.settings.isHeatmapActive}
             playerLocations={telemetry.playerLocations}
             allLocations={telemetry.allLocations}
           />
