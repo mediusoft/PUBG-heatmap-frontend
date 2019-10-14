@@ -75,7 +75,7 @@ export default function Telemetry(state) {
     const nameCounts = playerNames.length;
     const locations = [];
 
-    for (let i = 10; i < interval - 1; i += 1) {
+    for (let i = 10; i < interval - 1; i += 6) {
       const s = state[i];
 
       for (let j = 0; j < nameCounts; j++) {
