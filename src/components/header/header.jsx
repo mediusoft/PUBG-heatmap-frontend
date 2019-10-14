@@ -37,14 +37,13 @@ export const Header = () => {
             <Tooltip interactive title="Go to favorites page">
               <IconButton
                 style={{ color: "#fff" }}
-                edge="start"
                 onClick={() =>
                   history.push({
                     pathname: "/favorites"
                   })
                 }
               >
-                <Icon color="">star</Icon>
+                <Icon>star</Icon>
               </IconButton>
             </Tooltip>
             <Tooltip interactive title="Toggle light/dark theme">

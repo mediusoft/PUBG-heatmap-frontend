@@ -119,7 +119,7 @@ export const TimeSlider = ({
       <Grid item xs={1}>
         <Icon>access_time</Icon>
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={10}>
         <Slider
           className={classes.slider}
           min={1000}

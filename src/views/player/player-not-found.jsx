@@ -21,17 +21,17 @@ export const PlayerNotFound = ({ match }) => {
           <Grid item container justify="center" xs={6}>
             <CardHeader
               title={
-                <Typography color="primary" variant="h4">
+                <Typography color="secondary" variant="h4">
                   {`${match.params.playerName} - ${match.params.shardId}`}
                 </Typography>
               }
             />
-            <Card>
+            <Card raised>
               <CardContent>
                 <List
                   subheader={
                     <ListSubheader>
-                      <Typography color="secondary" variant="h6">
+                      <Typography color="error" variant="h6">
                         Player not found. Check that:
                       </Typography>
                     </ListSubheader>

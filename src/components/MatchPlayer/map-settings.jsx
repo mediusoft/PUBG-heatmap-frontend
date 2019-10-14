@@ -45,60 +45,74 @@ export const MapSettings = () => {
   };
   return (
     <Card>
-      <List subheader={<ListSubheader>Settings</ListSubheader>} className={classes.root}>
+      <List dense subheader={<ListSubheader>Settings</ListSubheader>} className={classes.root}>
         <ListItem>
           <ListItemIcon>
-            <Icon>wifi</Icon>
+            <Icon>brightness_medium</Icon>
           </ListItemIcon>
-          <ListItemText id="switch-list-label-wifi" primary="Heatmap" />
+          <ListItemText id="switch-list-label-heatmap" primary="Heatmap" />
           <ListItemSecondaryAction>
             <Switch
               edge="end"
               onChange={event => setOption("settings.isHeatmapActive", event.target.checked)}
               checked={settings.isHeatmapActive}
-              inputProps={{ "aria-labelledby": "switch-list-label-wifi" }}
+              inputProps={{ "aria-labelledby": "switch-list-label-heatmap" }}
             />
           </ListItemSecondaryAction>
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <Icon>bluetooth</Icon>
+            <Icon>hourglass_full</Icon>
           </ListItemIcon>
-          <ListItemText id="switch-list-label-bluetooth" primary="Blue zone" />
+          <ListItemText id="switch-list-label-blue-zone" primary="Blue zone" />
           <ListItemSecondaryAction>
             <Switch
               edge="end"
               onChange={event => setOption("settings.isBlueZoneActive", event.target.checked)}
               checked={settings.isBlueZoneActive}
+              inputProps={{ "aria-labelledby": "switch-list-label-blue-zone" }}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <Icon>verified_user</Icon>
+          </ListItemIcon>
+          <ListItemText id="switch-list-label-bluetooth" primary="Safe zone" />
+          <ListItemSecondaryAction>
+            <Switch
+              edge="end"
+              onChange={event => setOption("settings.isSafeZoneActive", event.target.checked)}
+              checked={settings.isSafeZoneActive}
               inputProps={{ "aria-labelledby": "switch-list-label-bluetooth" }}
             />
           </ListItemSecondaryAction>
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <Icon>bluetooth</Icon>
+            <Icon>flash_on</Icon>
           </ListItemIcon>
-          <ListItemText id="switch-list-label-bluetooth" primary="Red zone" />
+          <ListItemText id="switch-list-label-red-zone" primary="Red zone" />
           <ListItemSecondaryAction>
             <Switch
               edge="end"
               onChange={event => setOption("settings.isRedZoneActive", event.target.checked)}
               checked={settings.isRedZoneActive}
-              inputProps={{ "aria-labelledby": "switch-list-label-bluetooth" }}
+              inputProps={{ "aria-labelledby": "switch-list-label-red-zone" }}
             />
           </ListItemSecondaryAction>
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <Icon>bluetooth</Icon>
+            <Icon>face</Icon>
           </ListItemIcon>
-          <ListItemText id="switch-list-label-bluetooth" primary="Players" />
+          <ListItemText id="switch-list-label-players" primary="Players" />
           <ListItemSecondaryAction>
             <Switch
               edge="end"
               onChange={event => setOption("settings.isPlayersActive", event.target.checked)}
               checked={settings.isPlayersActive}
-              inputProps={{ "aria-labelledby": "switch-list-label-bluetooth" }}
+              inputProps={{ "aria-labelledby": "switch-list-label-players" }}
             />
           </ListItemSecondaryAction>
         </ListItem>

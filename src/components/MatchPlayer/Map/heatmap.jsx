@@ -3,13 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 import HeatmapFactory from "lib/heatmap-factory";
 import { toScale } from "lib/canvas-math";
 
-const HEATMAP_RADIUS = 15;
+const HEATMAP_RADIUS = 18;
 
 export const HeatMap = ({
   allLocations,
   playerLocations,
   pubgMapSize,
   mapSize,
+  isHeatmapActive,
   mapScale,
   offsetX,
   offsetY
@@ -21,7 +22,7 @@ export const HeatMap = ({
       container: nodeRef.current,
       radius: HEATMAP_RADIUS
     });
-    heatmapInstance.setDataMax(200);
+    // heatmapInstance.setDataMax(100);
     setHeatMap(heatmapInstance);
   }, []);
 
@@ -60,6 +61,7 @@ export const HeatMap = ({
       id="HeatMapWrapper"
       style={{
         position: "absolute",
+        visibility: `${isHeatmapActive ? "visible" : "Hidden"}`,
         width: `${mapSize}px`,
         height: `${mapSize}px`,
         transform: `scale(${mapScale})`,

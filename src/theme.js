@@ -10,7 +10,7 @@ const theme = type =>
         main: "#9046ff"
       },
       secondary: {
-        main: "#e91916"
+        main: "#4CAF50"
       },
       error: {
         main: red.A400
