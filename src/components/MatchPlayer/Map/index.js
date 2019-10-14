@@ -210,15 +210,16 @@ class Map extends React.Component {
                   circle={telemetry.redzone}
                 />
               )}
-              {telemetry.carePackages.map(carePackage => (
-                <CarePackage
-                  key={carePackage.key}
-                  mapSize={mapSize}
-                  pubgMapSize={pubgMapSize}
-                  mapScale={mapScale}
-                  carePackage={carePackage}
-                />
-              ))}
+              {options.settings.isCarePackageActive &&
+                telemetry.carePackages.map(carePackage => (
+                  <CarePackage
+                    key={carePackage.key}
+                    mapSize={mapSize}
+                    pubgMapSize={pubgMapSize}
+                    mapScale={mapScale}
+                    carePackage={carePackage}
+                  />
+                ))}
               {options.settings.isPlayersActive &&
                 map(sortedPlayers, player => (
                   <PlayerDot

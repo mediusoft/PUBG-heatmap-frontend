@@ -104,6 +104,20 @@ export const MapSettings = () => {
         </ListItem>
         <ListItem>
           <ListItemIcon>
+            <Icon>table_chart</Icon>
+          </ListItemIcon>
+          <ListItemText id="switch-list-label-players" primary="Care packages" />
+          <ListItemSecondaryAction>
+            <Switch
+              edge="end"
+              onChange={event => setOption("settings.isCarePackageActive", event.target.checked)}
+              checked={settings.isCarePackageActive}
+              inputProps={{ "aria-labelledby": "switch-list-label-players" }}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
             <Icon>face</Icon>
           </ListItemIcon>
           <ListItemText id="switch-list-label-players" primary="Players" />

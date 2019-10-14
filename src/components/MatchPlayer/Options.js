@@ -28,6 +28,7 @@ export const DEFAULT_OPTIONS = {
     isSafeZoneActive: true,
     isBlueZoneActive: true,
     isRedZoneActive: true,
+    isCarePackageActive: true,
     isPlayersActive: true
   }
 };
