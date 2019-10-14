@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import HeatmapFactory from "lib/heatmap-factory";
 import { toScale } from "lib/canvas-math";
 
-const HEATMAP_RADIUS = 20;
+const HEATMAP_RADIUS = 15;
 
 export const HeatMap = ({
   allLocations,
@@ -45,6 +45,15 @@ export const HeatMap = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerLocations, allLocations]);
+
+  useEffect(() => {
+    if (mapSize) {
+      const canvas = document.getElementById("HeatMapWrapper");
+      canvas.width = mapSize;
+      canvas.height = mapSize;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mapSize]);
 
   return (
     <div

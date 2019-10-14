@@ -1,8 +1,9 @@
 import React from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
+import { Typography } from "@material-ui/core";
 
-export const Spinner = () => {
+export const Spinner = ({ title, disableShrink }) => {
   return (
     <Grid
       container
@@ -10,7 +11,8 @@ export const Spinner = () => {
       alignItems="center"
       style={{ width: "100vw", height: "100vh" }}
     >
-      <CircularProgress color="secondary" />
+      <CircularProgress disableShrink={disableShrink} color="secondary" />
+      <Typography> {title}</Typography>
     </Grid>
   );
 };

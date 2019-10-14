@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   List,
@@ -11,6 +11,7 @@ import {
   Switch,
   Card
 } from "@material-ui/core";
+import { Context } from "./Options";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,6 +23,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const MapSettings = () => {
+  const {
+    options: { settings },
+    setOption
+  } = useContext(Context);
+
   const classes = useStyles();
   const [checked, setChecked] = React.useState(["wifi"]);
 
@@ -48,8 +54,8 @@ export const MapSettings = () => {
           <ListItemSecondaryAction>
             <Switch
               edge="end"
-              onChange={handleToggle("wifi")}
-              checked={checked.indexOf("wifi") !== -1}
+              onChange={event => setOption("settings.isHeatmapActive", event.target.checked)}
+              checked={settings.isHeatmapActive}
               inputProps={{ "aria-labelledby": "switch-list-label-wifi" }}
             />
           </ListItemSecondaryAction>
@@ -58,12 +64,40 @@ export const MapSettings = () => {
           <ListItemIcon>
             <Icon>bluetooth</Icon>
           </ListItemIcon>
-          <ListItemText id="switch-list-label-bluetooth" primary="Bluezone" />
+          <ListItemText id="switch-list-label-bluetooth" primary="Blue zone" />
           <ListItemSecondaryAction>
             <Switch
               edge="end"
-              onChange={handleToggle("bluetooth")}
-              checked={checked.indexOf("bluetooth") !== -1}
+              onChange={event => setOption("settings.isBlueZoneActive", event.target.checked)}
+              checked={settings.isBlueZoneActive}
+              inputProps={{ "aria-labelledby": "switch-list-label-bluetooth" }}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <Icon>bluetooth</Icon>
+          </ListItemIcon>
+          <ListItemText id="switch-list-label-bluetooth" primary="Red zone" />
+          <ListItemSecondaryAction>
+            <Switch
+              edge="end"
+              onChange={event => setOption("settings.isRedZoneActive", event.target.checked)}
+              checked={settings.isRedZoneActive}
+              inputProps={{ "aria-labelledby": "switch-list-label-bluetooth" }}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <Icon>bluetooth</Icon>
+          </ListItemIcon>
+          <ListItemText id="switch-list-label-bluetooth" primary="Players" />
+          <ListItemSecondaryAction>
+            <Switch
+              edge="end"
+              onChange={event => setOption("settings.isPlayersActive", event.target.checked)}
+              checked={settings.isPlayersActive}
               inputProps={{ "aria-labelledby": "switch-list-label-bluetooth" }}
             />
           </ListItemSecondaryAction>
