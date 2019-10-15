@@ -29,20 +29,7 @@ export const MapSettings = () => {
   } = useContext(Context);
 
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(["wifi"]);
-
-  const handleToggle = value => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-  };
+  
   return (
     <Card>
       <List dense subheader={<ListSubheader>Settings</ListSubheader>} className={classes.root}>
