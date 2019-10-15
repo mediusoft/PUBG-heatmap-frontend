@@ -24,7 +24,8 @@
     "react-router-dom": "5.1.2",
     "react-scripts": "3.1.2",
     "socket.io-client": "2.3.0",
-    "styled-components": "4.4.0"
+    "styled-components": "4.4.0",
+    "express": "4.17.1"
   },
   "devDependencies": {
     "@babel/cli": "7.6.2",
@@ -43,10 +44,12 @@
     "flow-bin": "0.108.0",
     "prettier": "1.18.2",
     "prop-types": "15.7.2",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "nodemon": "1.19.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node app.js",
+    "startDev": "nodemon app.js",
     "build": "react-scripts build",
     "npm-install": "npm i --loglevel=error",
     "pretty-all": "prettier --print-width 100 --write src/**/*.js",
