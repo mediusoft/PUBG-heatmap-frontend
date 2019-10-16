@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const client = new ApolloClient({
-  uri: "http://localhost:8080/graphql"
+  uri: `${process.env.REACT_APP_API}/graphql`
 });
 
 function App() {
