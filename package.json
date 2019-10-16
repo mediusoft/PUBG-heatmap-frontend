@@ -49,7 +49,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "startDev": "nodemon app.js",
+    "startDev": "react-scripts start",
     "build": "react-scripts build",
     "npm-install": "npm i --loglevel=error",
     "pretty-all": "prettier --print-width 100 --write src/**/*.js",
