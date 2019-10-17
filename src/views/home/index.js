@@ -75,7 +75,7 @@ export function Home() {
   if (loading) return <Spinner />;
   const sm = data ? data.sampleMatch : {};
   return (
-    <Card className={classes.root}>
+    <div className={classes.root}>
       <Grid item container justify="center" alignItems="center">
         <Card>
           <CardContent>
@@ -165,6 +165,6 @@ export function Home() {
           </CardContent>
         </Card>
       </Grid>
-    </Card>
+    </div>
   );
 }

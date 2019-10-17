@@ -151,7 +151,7 @@ export function Favorites() {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <Card className={classes.root}>
+    <div className={classes.root}>
       <CardContent>
         <Card raised>
           <CardContent>
@@ -211,6 +211,6 @@ export function Favorites() {
           />
         </Card>
       </CardContent>
-    </Card>
+    </div>
   );
 }

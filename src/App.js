@@ -47,7 +47,7 @@ const client = new ApolloClient({
 
 function App() {
   const classes = useStyles();
-  const [themeType, setThemeType] = useState(localStorage.getItem("themeType") || ThemeMode.Light);
+  const [themeType, setThemeType] = useState(localStorage.getItem("themeType") || ThemeMode.Dark);
   const [snack, setSnack] = React.useState({
     open: false,
     duration: 6000,
@@ -92,7 +92,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Theme.Context.Provider
-        value={{ toggleThemeType, notify, isDarkMode: themeType === ThemeMode.Light }}
+        value={{ toggleThemeType, notify, isDarkMode: themeType === ThemeMode.Dark }}
       >
         <ThemeProvider theme={muiTheme}>
           <CssBaseline />

@@ -2,7 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 
 if (process.env.REACT_APP_GA) {
-  ReactGA.initialize(process.env.REACT_APP_GA)
+  ReactGA.initialize(process.env.REACT_APP_GA);
 }
 
 // From: https://github.com/react-ga/react-ga/issues/122#issuecomment-320436578

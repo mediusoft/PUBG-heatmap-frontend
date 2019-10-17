@@ -5,7 +5,6 @@ import MatchPlayer from "components/MatchPlayer";
 import Telemetry from "models/Telemetry";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import { Card } from "@material-ui/core";
 import { Spinner } from "components";
 
 const { TelemetryWorker } = require("models/Telemetry.worker");
@@ -131,9 +130,9 @@ export const Match = ({ match }) => {
   }
 
   return (
-    <Card style={{ borderRadius: "0px", minHeight: "calc(100vh - 64px" }}>
+    <div style={{ minHeight: "calc(100vh - 64px" }}>
       <DocumentTitle title="Replay | pubgheatmap.net" />
       {content}
-    </Card>
+    </div>
   );
 };

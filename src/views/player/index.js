@@ -4,7 +4,7 @@ import DocumentTitle from "react-document-title";
 import { Context } from "contexts/settings";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import { Grid, Card, CardContent, Icon, Avatar, Typography } from "@material-ui/core";
+import { Grid, CardContent, Icon, Avatar, Typography } from "@material-ui/core";
 import { Bookmark, Spinner } from "components";
 import { makeStyles } from "@material-ui/core/styles";
 import MatchesList from "./matches-list";
@@ -13,7 +13,6 @@ import { PlayerNotFound } from "./player-not-found";
 
 const useStyles = makeStyles(theme => ({
   avatar: {
-    background: theme.palette.primary.main,
     margin: theme.spacing(1, 2)
   }
 }));
@@ -75,13 +74,13 @@ export const Player = ({ match }) => {
   const { shardId } = match.params;
 
   return (
-    <Card style={{minHeight:"calc(100vh - 64px)", borderRadius: "0px" }}>
+    <div style={{ minHeight: "calc(100vh - 64px)" }}>
       <DocumentTitle title={`${player.name} | pubgheatmap.net`} />
 
       <CardContent>
         <Grid container justify="center" alignItems="center">
           <Grid item justify="center" alignItems="center" spacing={2} container xs={12}>
-            <Avatar color="primary" className={classes.avatar}>
+            <Avatar className={classes.avatar}>
               <Icon fontSize="large">flash_on</Icon>
             </Avatar>
             <Typography variant="h5">{player.name}</Typography>
@@ -122,6 +121,6 @@ export const Player = ({ match }) => {
           )}
         </Grid>
       </CardContent>
-    </Card>
+    </div>
   );
 };

@@ -11,6 +11,8 @@ import {
   Hidden,
   Menu,
   MenuItem,
+  ListItemIcon,
+  ListItemText,
   Icon,
   ButtonBase
 } from "@material-ui/core";
@@ -53,7 +55,7 @@ export const Header = () => {
                 </Hidden>
 
                 <Hidden mdUp>
-                <Typography variant="h5">Pubgheatmap</Typography>
+                  <Typography variant="h5">Pubgheatmap</Typography>
                 </Hidden>
               </Toolbar>
             </ButtonBase>
@@ -83,8 +85,8 @@ export const Header = () => {
               </Grid>
               <Grid item sm={3}>
                 <Tooltip interactive title="Toggle light/dark theme">
-                  <IconButton onClick={handleChange}>
-                    <LightIcon isDarkMode={isDarkMode} />
+                  <IconButton onClick={handleChange} style={{ color: "#fff" }}>
+                    <Icon>{isDarkMode ? "brightness_4" : "brightness_7"}</Icon>
                   </IconButton>
                 </Tooltip>
               </Grid>
@@ -126,7 +128,7 @@ export const Header = () => {
                   onClick={handleMenu}
                   color="inherit"
                 >
-                  <Icon>account_circle</Icon>
+                  <Icon>menu</Icon>
                 </IconButton>
                 <Menu
                   id="menu-appbar"
@@ -143,10 +145,42 @@ export const Header = () => {
                   open={!!anchorEl}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>Favorites</MenuItem>
-                  <MenuItem onClick={handleClose}>About</MenuItem>
-                  <MenuItem onClick={handleClose}>Toggle Theme</MenuItem>
-                  <MenuItem onClick={handleClose}>Github</MenuItem>
+                  <MenuItem
+                    onClick={event => {
+                      handleClose(event);
+                      history.push({
+                        pathname: "/favorites"
+                      });
+                    }}
+                  >
+                    <ListItemText primary="Favorites" />
+                  </MenuItem>
+                  <MenuItem
+                    onClick={event => {
+                      handleClose(event);
+                      history.push({
+                        pathname: "/about"
+                      });
+                    }}
+                  >
+                    <ListItemText primary="About" />
+                  </MenuItem>
+                  <MenuItem
+                    onClick={event => {
+                      handleClose(event);
+                      handleChange(event);
+                    }}
+                  >
+                    <ListItemText primary="Toggle Theme" />
+                  </MenuItem>
+                  <MenuItem
+                    onClick={event => {
+                      handleClose(event);
+                      window.location.href = GITHUB_LINK;
+                    }}
+                  >
+                    <ListItemText primary="Github" />
+                  </MenuItem>
                 </Menu>
               </div>
             </Hidden>

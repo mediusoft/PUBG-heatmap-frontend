@@ -26,7 +26,7 @@ export function About() {
       .then(text => setMarkdown(text));
   }, []);
   return (
-    <Card className={classes.root}>
+    <div className={classes.root}>
       <DocumentTitle title="About | pubgheatmap.net" />
       <CardContent>
         <Grid container justify="center" alignItems="center">
@@ -91,6 +91,6 @@ export function About() {
           </Grid>
         </Grid>
       </CardContent>
-    </Card>
+    </div>
   );
 }

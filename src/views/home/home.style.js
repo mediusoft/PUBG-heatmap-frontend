@@ -4,11 +4,9 @@ export const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    borderRadius: "0px",
     justifyContent: "space-around",
     overflow: "hidden",
-    minHeight: "calc(100vh - 64px)",
-    backgroundColor: theme.palette.background.paper
+    minHeight: "calc(100vh - 64px)"
   },
   button: {
     padding: theme.spacing(1.8, 3)

@@ -14,9 +14,6 @@ const theme = type =>
       },
       error: {
         main: red.A400
-      },
-      background: {
-        default: "#fff"
       }
     }
   });
