@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import HeatmapFactory from "lib/heatmap-factory";
 import { toScale } from "lib/canvas-math";
 
-const HEATMAP_RADIUS = 20;
+const HEATMAP_RADIUS = 15;
 const HEATMAP_MAX_DATA = 2000;
 
 export const HeatMap = ({

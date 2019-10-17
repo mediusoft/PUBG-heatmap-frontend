@@ -71,7 +71,9 @@ const MatchesList = ({ header, col, baseUrl, matches }) => {
                 <TableBody>
                   {ms.map(m => (
                     <TableRow key={m.id}>
-                      <TableCell align="center">{friendlyMapName(m.mapName)}</TableCell>
+                      <TableCell align="center">
+                        {friendlyMapName(m.mapName)}
+                      </TableCell>
                       <TableCell align="center">
                         <strong>{m.stats.winPlace}</strong>
                         {ordinalSuffix(m.stats.winPlace)}
@@ -89,7 +91,7 @@ const MatchesList = ({ header, col, baseUrl, matches }) => {
                         >
                           {moment(m.playedAt).format("H:mm")}
                           <Icon fontSize="small" className={classes.rightIcon}>
-                            send
+                            double_arrow
                           </Icon>
                         </Button>
                       </TableCell>

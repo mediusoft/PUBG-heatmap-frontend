@@ -3,13 +3,14 @@ import { IconButton, Icon } from "@material-ui/core";
 import { Context } from "contexts/theme-context";
 import { MessageType } from "enum";
 
-export const Bookmark = ({ playerName, bookmarked, onClick }) => {
+export const Bookmark = ({ playerName, bookmarked, onClick, ...props }) => {
   const { notify } = useContext(Context);
   const message = bookmarked
     ? `${playerName} removed from favorites`
     : `${playerName} added to favorites`;
   return (
     <IconButton
+      {...props}
       size="large"
       onClick={() => {
         notify({

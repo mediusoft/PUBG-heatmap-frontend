@@ -11,13 +11,12 @@ import {
   Hidden,
   Menu,
   MenuItem,
-  ListItemIcon,
   ListItemText,
   Icon,
   ButtonBase
 } from "@material-ui/core";
 import { Context } from "contexts/theme-context";
-import { LightIcon, GithubIcon, AboutIcon } from "components/svg-icons";
+import { GithubIcon, AboutIcon } from "components/svg-icons";
 import history from "browser-history";
 import { GITHUB_LINK } from "config";
 
@@ -41,7 +40,7 @@ export const Header = () => {
       <CssBaseline />
       <AppBar>
         <Grid container>
-          <Grid item xs={10}>
+          <Grid item xs={9}>
             <ButtonBase
               onClick={() =>
                 history.push({
@@ -63,10 +62,9 @@ export const Header = () => {
           <Grid
             item
             container
-            spacing={2}
             justify="space-around"
             alignItems="center"
-            xs={2}
+            xs={3}
           >
             <Hidden smDown>
               <Grid item sm={3}>
