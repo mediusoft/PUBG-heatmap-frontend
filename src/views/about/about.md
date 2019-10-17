@@ -18,7 +18,7 @@ We need you! If you would like to support the further development of this projec
 
 **Patreon**
 
-- **[Patreon](https://www.patreon.com/orkhan)**: You can support me on Patreon too!
+- **[Patreon](https://www.patreon.com/orkhan_rzazade)**: You can support me on Patreon too!
 
 Of course, you can also choose what you want to donate, all donations are awesome!
 
