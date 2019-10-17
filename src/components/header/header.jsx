@@ -62,14 +62,15 @@ export const Header = () => {
           <Grid
             item
             container
-            justify="space-around"
+            justify="flex-end"
             alignItems="center"
             xs={3}
           >
             <Hidden smDown>
-              <Grid item sm={3}>
+              <Grid item sm={2}>
                 <Tooltip interactive title="Go to favorites page">
                   <IconButton
+                    edge="start"
                     style={{ color: "#fff" }}
                     onClick={() =>
                       history.push({
@@ -81,14 +82,18 @@ export const Header = () => {
                   </IconButton>
                 </Tooltip>
               </Grid>
-              <Grid item sm={3}>
+              <Grid item sm={2}>
                 <Tooltip interactive title="Toggle light/dark theme">
-                  <IconButton onClick={handleChange} style={{ color: "#fff" }}>
+                  <IconButton
+                    edge="start"
+                    onClick={handleChange}
+                    style={{ color: "#fff" }}
+                  >
                     <Icon>{isDarkMode ? "brightness_4" : "brightness_7"}</Icon>
                   </IconButton>
                 </Tooltip>
               </Grid>
-              <Grid item sm={3}>
+              <Grid item sm={2}>
                 <Tooltip interactive title="Go to about page">
                   <IconButton
                     edge="start"
@@ -102,7 +107,7 @@ export const Header = () => {
                   </IconButton>
                 </Tooltip>
               </Grid>
-              <Grid item sm={3}>
+              <Grid item sm={2}>
                 <Tooltip interactive title="Github repository">
                   <Link
                     target="_blank"
