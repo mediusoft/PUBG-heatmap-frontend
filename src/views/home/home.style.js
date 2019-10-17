@@ -5,34 +5,31 @@ export const useStyles = makeStyles(theme => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
-    overflow: "hidden",
-    minHeight: "calc(100vh - 64px)"
+    overflow: "hidden"
   },
+  padding: { padding: theme.spacing(2, 0) },
+  content: { width: "100%" },
   button: {
     padding: theme.spacing(1.8, 3)
   },
   disabled: {
+    width: "100%",
     pointerEvents: "none",
     cursor: "default"
   },
   formControl: {
-    margin: theme.spacing(1),
+    width: "100%",
     minWidth: 120
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
   },
   image: {
     position: "relative",
-    width: 450,
-    height: 350,
+    width: "100% !important", // Overrides inline-style
+    height: "calc(60vh)",
     [theme.breakpoints.down("xs")]: {
-      width: "100% !important", // Overrides inline-style
-      height: 400
+      height: "calc(40vh)"
     },
     "&:hover, &$focusVisible": {
       zIndex: 1,
@@ -80,7 +77,8 @@ export const useStyles = makeStyles(theme => ({
   },
   imageTitle: {
     position: "relative",
-    padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`
+    padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) +
+      6}px`
   },
   imageMarked: {
     height: 3,
