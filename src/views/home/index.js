@@ -75,7 +75,7 @@ export function Home() {
   if (loading) return <Spinner />;
   const sm = data ? data.sampleMatch : {};
   return (
-    <Card className={classes.root} style={{ borderRadius: "0px" }}>
+    <Card className={classes.root}>
       <Grid item container justify="center" alignItems="center">
         <Card>
           <CardContent>
@@ -118,7 +118,7 @@ export function Home() {
                   <FormControl variant="outlined" className={classes.formControl}>
                     <Button
                       variant="contained"
-                      color="primary"
+                      color="secondary"
                       type="submit"
                       size="large"
                       className={classes.button}

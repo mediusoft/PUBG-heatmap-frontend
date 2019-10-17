@@ -131,7 +131,7 @@ export const Match = ({ match }) => {
   }
 
   return (
-    <Card style={{ borderRadius: "0px", height: "calc(100vh - 64px" }}>
+    <Card style={{ borderRadius: "0px", minHeight: "calc(100vh - 64px" }}>
       <DocumentTitle title="Replay | pubgheatmap.net" />
       {content}
     </Card>

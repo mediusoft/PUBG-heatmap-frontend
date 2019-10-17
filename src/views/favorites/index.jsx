@@ -16,7 +16,7 @@ function createData(name, shardId, createdAt) {
       onClick={() => history.push(`${name}/${shardId}`)}
       size="small"
       variant="contained"
-      color="primary"
+      color="secondary"
       style={{ margin: "8px" }}
     >
       View

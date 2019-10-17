@@ -75,7 +75,7 @@ export const Player = ({ match }) => {
   const { shardId } = match.params;
 
   return (
-    <Card style={{ borderRadius: "0px" }}>
+    <Card style={{minHeight:"calc(100vh - 64px)", borderRadius: "0px" }}>
       <DocumentTitle title={`${player.name} | pubgheatmap.net`} />
 
       <CardContent>
@@ -118,7 +118,7 @@ export const Player = ({ match }) => {
             matches={matchTypes["4"]}
           />
           {hasCustom && (
-            <MatchesList lg={3} header="Custom" baseUrl={match.url} matches={matchTypes.c} />
+            <MatchesList col={3} header="Custom" baseUrl={match.url} matches={matchTypes.c} />
           )}
         </Grid>
       </CardContent>

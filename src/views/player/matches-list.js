@@ -52,9 +52,9 @@ const MatchesList = ({ header, col, baseUrl, matches }) => {
       </Typography>
       {map(byDate, (ms, date) => {
         return (
-          <div className={classes.padding}>
-            <Card key={`header-${date}`} className={classes.paper}>
-              <Table padding="default" size="small">
+          <div key={`header-${date}`} className={classes.padding}>
+            <Card raised className={classes.paper}>
+              <Table padding="none" size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <TableCell colSpan={5} align="center">
@@ -79,12 +79,12 @@ const MatchesList = ({ header, col, baseUrl, matches }) => {
                       <TableCell align="center">
                         <strong>{m.stats.kills}</strong>
                       </TableCell>
-                      <TableCell align="center">
+                      <TableCell align="right">
                         <Button
                           onClick={() => history.push(`${baseUrl}/${m.id}`)}
                           size="small"
                           variant="contained"
-                          color="primary"
+                          color="secondary"
                           className={classes.button}
                         >
                           {moment(m.playedAt).format("H:mm")}

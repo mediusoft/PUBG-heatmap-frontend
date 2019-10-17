@@ -4,9 +4,10 @@ export const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
+    borderRadius: "0px",
     justifyContent: "space-around",
     overflow: "hidden",
-    height: "calc(100vh - 64px)",
+    minHeight: "calc(100vh - 64px)",
     backgroundColor: theme.palette.background.paper
   },
   button: {

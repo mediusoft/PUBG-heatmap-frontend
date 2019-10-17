@@ -121,6 +121,7 @@ export const TimeSlider = ({
       </Grid>
       <Grid item xs={10}>
         <Slider
+          color="secondary"
           className={classes.slider}
           min={1000}
           max={durationSeconds * 1000}
