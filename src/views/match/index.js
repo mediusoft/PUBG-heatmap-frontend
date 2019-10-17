@@ -110,13 +110,13 @@ export const Match = ({ match }) => {
   let content;
 
   if (loading) {
-    content = <Spinner />;
+    content = <Spinner title="Loading match data..." />;
   } else if (error || telemetryError) {
     content = <div>An error occurred :(</div>;
   } else if (!data.match) {
     content = <div>Match not found</div>;
   } else if (!telemetryLoaded) {
-    content = <Spinner />;
+    content = <Spinner disableShrink title="Loading telemetry data..." />;
   } else {
     content = (
       <MatchPlayer
@@ -131,7 +131,7 @@ export const Match = ({ match }) => {
   }
 
   return (
-    <Card style={{ borderRadius: "0px", height: "calc(100vh - 64px" }}>
+    <Card style={{ borderRadius: "0px", minHeight: "calc(100vh - 64px" }}>
       <DocumentTitle title="Replay | pubgheatmap.net" />
       {content}
     </Card>

@@ -30,7 +30,7 @@ const ModalContainer = styled.div`
 `;
 
 const OpenButton = styled(MapButton)`
-  top: 63px;
+  top: 15px;
   right: 15px;
   z-index: 999;
   @media (-moz-touch-enabled: 1), (pointer: coarse) {

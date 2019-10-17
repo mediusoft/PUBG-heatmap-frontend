@@ -6,3 +6,4 @@ export { CopyToClipboard } from "./copy-to-clipboard";
 export { SearchInput } from "./search-input";
 export { ScrollTop } from "./scroll-top";
 export { Spinner } from "./spinner";
+export { Footer } from "./footer";

@@ -186,7 +186,7 @@ class Map extends React.Component {
           <BackgroundLayer mapName={mapName} mapSize={mapSize} />
           {telemetry && (
             <Layer style={{ zIndex: 100 }}>
-              {telemetry.safezone && (
+              {telemetry.safezone && options.settings.isSafeZoneActive && (
                 <Safezone
                   mapSize={mapSize}
                   pubgMapSize={pubgMapSize}
@@ -194,7 +194,7 @@ class Map extends React.Component {
                   circle={telemetry.safezone}
                 />
               )}
-              {telemetry.bluezone && (
+              {telemetry.bluezone && options.settings.isBlueZoneActive && (
                 <Bluezone
                   mapSize={mapSize}
                   pubgMapSize={pubgMapSize}
@@ -202,7 +202,7 @@ class Map extends React.Component {
                   circle={telemetry.bluezone}
                 />
               )}
-              {telemetry.redzone && (
+              {telemetry.redzone && options.settings.isRedZoneActive && (
                 <Redzone
                   mapSize={mapSize}
                   pubgMapSize={pubgMapSize}
@@ -210,27 +210,29 @@ class Map extends React.Component {
                   circle={telemetry.redzone}
                 />
               )}
-              {telemetry.carePackages.map(carePackage => (
-                <CarePackage
-                  key={carePackage.key}
-                  mapSize={mapSize}
-                  pubgMapSize={pubgMapSize}
-                  mapScale={mapScale}
-                  carePackage={carePackage}
-                />
-              ))}
-              {map(sortedPlayers, player => (
-                <PlayerDot
-                  options={options}
-                  player={player}
-                  mapSize={mapSize}
-                  pubgMapSize={pubgMapSize}
-                  mapScale={mapScale}
-                  key={`dot-${player.name}`}
-                  marks={marks}
-                  showName={marks.isPlayerTracked(player.name)}
-                />
-              ))}
+              {options.settings.isCarePackageActive &&
+                telemetry.carePackages.map(carePackage => (
+                  <CarePackage
+                    key={carePackage.key}
+                    mapSize={mapSize}
+                    pubgMapSize={pubgMapSize}
+                    mapScale={mapScale}
+                    carePackage={carePackage}
+                  />
+                ))}
+              {options.settings.isPlayersActive &&
+                map(sortedPlayers, player => (
+                  <PlayerDot
+                    options={options}
+                    player={player}
+                    mapSize={mapSize}
+                    pubgMapSize={pubgMapSize}
+                    mapScale={mapScale}
+                    key={`dot-${player.name}`}
+                    marks={marks}
+                    showName={marks.isPlayerTracked(player.name)}
+                  />
+                ))}
               {telemetry.tracers.map(tracer => (
                 <Tracer
                   key={tracer.key}
@@ -249,6 +251,7 @@ class Map extends React.Component {
           <HeatMap
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...{ pubgMapSize, mapSize, mapScale, offsetX, offsetY }}
+            isHeatmapActive={options.settings.isHeatmapActive}
             playerLocations={telemetry.playerLocations}
             allLocations={telemetry.allLocations}
           />

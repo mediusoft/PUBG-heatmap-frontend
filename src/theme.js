@@ -7,10 +7,10 @@ const theme = type =>
     palette: {
       type,
       primary: {
-        main: "#9046ff"
+        main: "#2f3545"
       },
       secondary: {
-        main: "#e91916"
+        main: "rgb(254, 195, 62)"
       },
       error: {
         main: red.A400

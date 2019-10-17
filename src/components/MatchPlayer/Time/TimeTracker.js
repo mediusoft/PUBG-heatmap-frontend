@@ -5,7 +5,6 @@ class TimeTracker extends React.Component {
   state = {
     autoplaySpeed: 6,
     msSinceEpoch: 1000,
-    refreshHeatmap: false,
     autoplay: false
   };
 
@@ -14,10 +13,11 @@ class TimeTracker extends React.Component {
   clampMsSinceEpoch = val => clamp(val, 1000, this.props.durationSeconds * 1000);
 
   setMsSinceEpoch = val => {
-    console.log("val", val);
+    const { setGettingAll } = this.props;
+    setGettingAll(true);
+
     this.setState({
-      msSinceEpoch: this.clampMsSinceEpoch(val),
-      refreshHeatmap: true
+      msSinceEpoch: this.clampMsSinceEpoch(val)
     });
   };
 
@@ -148,14 +148,14 @@ class TimeTracker extends React.Component {
   };
 
   render() {
-    const { telemetry } = this.props;
-    const { msSinceEpoch, autoplay, autoplaySpeed, refreshHeatmap } = this.state;
+    const { telemetry, getAllUntillMsSinceEpoch, setGettingAll } = this.props;
+    const { msSinceEpoch, autoplay, autoplaySpeed } = this.state;
 
     let currentTelemetry;
     if (telemetry) {
-      if (refreshHeatmap) {
+      if (getAllUntillMsSinceEpoch) {
         currentTelemetry = telemetry.stateBefore(msSinceEpoch);
-        this.setState({ refreshHeatmap: false });
+        setGettingAll(false);
       } else {
         currentTelemetry = telemetry.stateAt(msSinceEpoch);
       }

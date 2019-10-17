@@ -4,12 +4,14 @@ import HeatmapFactory from "lib/heatmap-factory";
 import { toScale } from "lib/canvas-math";
 
 const HEATMAP_RADIUS = 20;
+const HEATMAP_MAX_DATA = 2000;
 
 export const HeatMap = ({
   allLocations,
   playerLocations,
   pubgMapSize,
   mapSize,
+  isHeatmapActive,
   mapScale,
   offsetX,
   offsetY
@@ -21,7 +23,7 @@ export const HeatMap = ({
       container: nodeRef.current,
       radius: HEATMAP_RADIUS
     });
-    heatmapInstance.setDataMax(200);
+    heatmapInstance.setDataMax(HEATMAP_MAX_DATA);
     setHeatMap(heatmapInstance);
   }, []);
 
@@ -37,7 +39,7 @@ export const HeatMap = ({
   useEffect(() => {
     if (heatmap) {
       if (allLocations) {
-        heatmap.setData({ data: computeData(allLocations) });
+        heatmap.setData({ data: computeData(allLocations), max: HEATMAP_MAX_DATA });
       } else {
         const data = Object.values(playerLocations);
         heatmap.addData(computeData(data));
@@ -46,11 +48,21 @@ export const HeatMap = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerLocations, allLocations]);
 
+  useEffect(() => {
+    if (mapSize) {
+      const canvas = document.getElementById("HeatMapWrapper");
+      canvas.width = mapSize;
+      canvas.height = mapSize;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mapSize]);
+
   return (
     <div
       id="HeatMapWrapper"
       style={{
         position: "absolute",
+        visibility: `${isHeatmapActive ? "visible" : "Hidden"}`,
         width: `${mapSize}px`,
         height: `${mapSize}px`,
         transform: `scale(${mapScale})`,
