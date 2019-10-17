@@ -16,7 +16,7 @@ import {
 export const PlayerNotFound = ({ match }) => {
   return (
     <Grid style={{ height: "calc(100vh - 64px)" }}>
-      <Card style={{ height: "calc(100vh - 64px)", borderRadius: "0px" }}>
+      <div style={{ height: "calc(100vh - 64px)",  }}>
         <Grid container justify="center" alignItems="center">
           <Grid item container justify="center" xs={6}>
             <CardHeader
@@ -92,7 +92,7 @@ export const PlayerNotFound = ({ match }) => {
             </Card>
           </Grid>
         </Grid>
-      </Card>
+      </div>
     </Grid>
   );
 };
