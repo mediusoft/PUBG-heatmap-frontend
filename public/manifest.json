@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "PUBG-heatmap",
+  "name": "An analytic tool for Player Unknown's Battle Ground - PUBG",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,6 +19,7 @@
     }
   ],
   "start_url": ".",
+  "lang": "en",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
