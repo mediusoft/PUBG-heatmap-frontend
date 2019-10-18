@@ -4,14 +4,12 @@ export const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     minHeight: "calc(100vh - 64px)",
-    borderRadius: "0px"
+    borderRadius: "0px",
+    marginTop: theme.spacing(2)
   },
   paper: {
     width: "100%",
     marginBottom: theme.spacing(2)
-  },
-  table: {
-    minWidth: 750
   },
   tableWrapper: {
     overflowX: "auto"

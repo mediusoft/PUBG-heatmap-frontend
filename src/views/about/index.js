@@ -30,7 +30,7 @@ export function About() {
       <DocumentTitle title="About | pubgheatmap.net" />
       <CardContent>
         <Grid container justify="center" alignItems="center">
-          <Grid item xs={9}>
+          <Grid item xs={12} md={9}>
             <Card raised>
               <CardContent>
                 <ReactMarkdown source={markdown} />

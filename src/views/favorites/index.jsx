@@ -7,23 +7,14 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import history from "browser-history";
-import { Button, Icon, Card, CardContent } from "@material-ui/core";
+import { IconButton, Icon, Card, CardContent, Grid } from "@material-ui/core";
 import { useStyles } from "./favorites.style";
 
 function createData(name, shardId, createdAt) {
   const goTo = (
-    <Button
-      onClick={() => history.push(`${name}/${shardId}`)}
-      size="small"
-      variant="contained"
-      color="secondary"
-      style={{ margin: "8px" }}
-    >
-      View
-      <Icon fontSize="small" style={{ marginLeft: "8px" }}>
-        visibility
-      </Icon>
-    </Button>
+    <IconButton onClick={() => history.push(`${name}/${shardId}`)} size="small" color="secondary">
+      <Icon fontSize="small">arrow_forward</Icon>
+    </IconButton>
   );
   return { name, shardId, createdAt, goTo };
 }
@@ -55,14 +46,13 @@ function getSorting(order, orderBy) {
   return order === "desc" ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
-const headCells = [
-  { id: "name", numeric: false, align: "left", label: "Player Name" },
-  { id: "shardId", numeric: true, align: "center", label: "Shard" },
-  { id: "createdAt", numeric: true, align: "center", label: "Created At" },
-  { id: "goTo", numeric: true, align: "right", label: "Go to" }
-];
-
 function FavoritesHead(props) {
+  const headCells = [
+    { id: "name", align: "left", label: "Player" },
+    { id: "shardId", align: "center", label: "Shard" },
+    { id: "createdAt", align: "center", label: "Time" },
+    { id: "goTo", align: "right", label: "Go" }
+  ];
   const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = property => event => {
     onRequestSort(event, property);
@@ -152,65 +142,67 @@ export function Favorites() {
 
   return (
     <div className={classes.root}>
-      <CardContent>
-        <Card raised>
-          <CardContent>
-            <div className={classes.tableWrapper}>
-              <Table className={classes.table} aria-labelledby="tableTitle" size="small">
-                <FavoritesHead
-                  classes={classes}
-                  numSelected={selected.length}
-                  order={order}
-                  orderBy={orderBy}
-                  onSelectAllClick={handleSelectAllClick}
-                  onRequestSort={handleRequestSort}
-                  rowCount={rows.length}
-                />
-                <TableBody>
-                  {stableSort(rows, getSorting(order, orderBy))
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
-                      return (
-                        <TableRow
-                          hover
-                          onClick={event => handleClick(event, row.name)}
-                          tabIndex={-1}
-                          key={row.name}
-                        >
-                          <TableCell align="left">{row.name}</TableCell>
-                          <TableCell align="center">{row.shardId}</TableCell>
-                          <TableCell align="center">{row.createdAt}</TableCell>
-                          <TableCell align="right">{row.goTo}</TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 33 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
+      <Grid container xs={12} justify="center">
+        <Grid item xs={11}>
+          <Card raised>
+            <CardContent>
+              <div className={classes.tableWrapper}>
+                <Table padding="none" aria-labelledby="tableTitle" size="small">
+                  <FavoritesHead
+                    classes={classes}
+                    numSelected={selected.length}
+                    order={order}
+                    orderBy={orderBy}
+                    onSelectAllClick={handleSelectAllClick}
+                    onRequestSort={handleRequestSort}
+                    rowCount={rows.length}
+                  />
+                  <TableBody>
+                    {stableSort(rows, getSorting(order, orderBy))
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map(row => {
+                        return (
+                          <TableRow
+                            hover
+                            onClick={event => handleClick(event, row.name)}
+                            tabIndex={-1}
+                            key={row.name}
+                          >
+                            <TableCell align="left">{row.name}</TableCell>
+                            <TableCell align="center">{row.shardId}</TableCell>
+                            <TableCell align="center">{row.createdAt}</TableCell>
+                            <TableCell align="right">{row.goTo}</TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    {emptyRows > 0 && (
+                      <TableRow style={{ height: 33 * emptyRows }}>
+                        <TableCell colSpan={6} />
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            </CardContent>
 
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            backIconButtonProps={{
-              "aria-label": "previous page"
-            }}
-            nextIconButtonProps={{
-              "aria-label": "next page"
-            }}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-          />
-        </Card>
-      </CardContent>
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              backIconButtonProps={{
+                "aria-label": "previous page"
+              }}
+              nextIconButtonProps={{
+                "aria-label": "next page"
+              }}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 }
