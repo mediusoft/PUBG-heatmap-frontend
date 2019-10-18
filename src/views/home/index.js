@@ -36,9 +36,7 @@ export function Home() {
   `;
 
   const [labelWidth, setLabelWidth] = useState(0);
-  const [shardId, setShardId] = useState(
-    localStorage.getItem("shardIdV2") || SHARDS[0]
-  );
+  const [shardId, setShardId] = useState(localStorage.getItem("shardIdV2") || SHARDS[0]);
   const [searchText, setSearchText] = useState("");
 
   const inputRef = useCallback(node => {
@@ -85,16 +83,10 @@ export function Home() {
               <Grid container spacing={3} direction="column">
                 <Grid item>
                   <form onSubmit={search}>
-                    <Grid container item  spacing={2} justify="space-between"  >
-                      <Grid item xs={12} md={3}>
-                        <FormControl
-                          variant="outlined"
-                          className={classes.formControl}
-                        >
-                          <InputLabel
-                            ref={labelRef}
-                            htmlFor="outlined-select-simple"
-                          >
+                    <Grid container item spacing={2} justify="space-between">
+                      <Grid item xs={12} md={4}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={labelRef} htmlFor="outlined-select-simple">
                             Shards
                           </InputLabel>
                           <Select
@@ -114,11 +106,8 @@ export function Home() {
                           </Select>
                         </FormControl>
                       </Grid>
-                      <Grid item xs={12} md={3}>
-                        <FormControl
-                          variant="outlined"
-                          className={classes.formControl}
-                        >
+                      <Grid item xs={12} md={4}>
+                        <FormControl variant="outlined" className={classes.formControl}>
                           <TextField
                             inputRef={inputRef}
                             autoFocus
@@ -132,11 +121,8 @@ export function Home() {
                           />
                         </FormControl>
                       </Grid>
-                      <Grid item xs={12} md={3}>
-                        <FormControl
-                          variant="outlined"
-                          className={classes.formControl}
-                        >
+                      <Grid item xs={12} md={4}>
+                        <FormControl variant="outlined" className={classes.formControl}>
                           <Button
                             variant="contained"
                             color="secondary"
@@ -155,33 +141,34 @@ export function Home() {
 
                 <Grid item container justify="center" alignItems="center">
                   <Link
+                    style={{ width: "100%" }}
                     className={!!error && classes.disabled}
                     href={sm ? `/${sm.playerName}/${sm.shardId}/${sm.id}` : ""}
                   >
                     <Grid item container justify="center">
-                    <ButtonBase
-                      focusRipple
-                      className={classes.image}
-                      focusVisibleClassName={classes.focusVisible}
-                    >
-                      <span
-                        className={classes.imageSrc}
-                        style={{
-                          backgroundImage: `url(${headerImg})`
-                        }}
-                      />
-                      <span className={classes.imageBackdrop} />
-                      <span className={classes.imageButton}>
-                        <Typography
-                          component="span"
-                          variant="subtitle1"
-                          className={classes.imageTitle}
-                        >
-                          Click to watch a random match
-                          <span className={classes.imageMarked} />
-                        </Typography>
-                      </span>
-                    </ButtonBase>
+                      <ButtonBase
+                        focusRipple
+                        className={classes.image}
+                        focusVisibleClassName={classes.focusVisible}
+                      >
+                        <span
+                          className={classes.imageSrc}
+                          style={{
+                            backgroundImage: `url(${headerImg})`
+                          }}
+                        />
+                        <span className={classes.imageBackdrop} />
+                        <span className={classes.imageButton}>
+                          <Typography
+                            component="span"
+                            variant="subtitle1"
+                            className={classes.imageTitle}
+                          >
+                            Click to watch a random match
+                            <span className={classes.imageMarked} />
+                          </Typography>
+                        </span>
+                      </ButtonBase>
                     </Grid>
                   </Link>
                 </Grid>

@@ -13,14 +13,25 @@ import {
   MenuItem,
   ListItemText,
   Icon,
-  ButtonBase
+  ButtonBase,
+  Badge
 } from "@material-ui/core";
 import { Context } from "contexts/theme-context";
 import { GithubIcon, AboutIcon } from "components/svg-icons";
 import history from "browser-history";
+import { makeStyles } from "@material-ui/core/styles";
 import { GITHUB_LINK } from "config";
 
+const useStyles = makeStyles({
+  badge: {
+    "& span": {
+      right: "-12px",
+      top: "3px"
+    }
+  }
+});
 export const Header = () => {
+  const classes = useStyles();
   const { toggleThemeType, isDarkMode } = useContext(Context);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -50,22 +61,20 @@ export const Header = () => {
             >
               <Toolbar>
                 <Hidden smDown>
-                  <Typography variant="h5">Pubgheatmap.net</Typography>
+                  <Badge color="secondary" badgeContent="α" className={classes.badge}>
+                    <Typography variant="h5">Pubgheatmap.net</Typography>
+                  </Badge>
                 </Hidden>
 
                 <Hidden mdUp>
-                  <Typography variant="h5">Pubgheatmap</Typography>
+                  <Badge color="secondary" badgeContent="α" className={classes.badge}>
+                    <Typography variant="h5">Pubgheatmap</Typography>
+                  </Badge>
                 </Hidden>
               </Toolbar>
             </ButtonBase>
           </Grid>
-          <Grid
-            item
-            container
-            justify="flex-end"
-            alignItems="center"
-            xs={3}
-          >
+          <Grid item container justify="flex-end" alignItems="center" xs={3}>
             <Hidden smDown>
               <Grid item sm={2}>
                 <Tooltip interactive title="Go to favorites page">
@@ -84,11 +93,7 @@ export const Header = () => {
               </Grid>
               <Grid item sm={2}>
                 <Tooltip interactive title="Toggle light/dark theme">
-                  <IconButton
-                    edge="start"
-                    onClick={handleChange}
-                    style={{ color: "#fff" }}
-                  >
+                  <IconButton edge="start" onClick={handleChange} style={{ color: "#fff" }}>
                     <Icon>{isDarkMode ? "brightness_4" : "brightness_7"}</Icon>
                   </IconButton>
                 </Tooltip>
@@ -109,11 +114,7 @@ export const Header = () => {
               </Grid>
               <Grid item sm={2}>
                 <Tooltip interactive title="Github repository">
-                  <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={GITHUB_LINK}
-                  >
+                  <Link target="_blank" rel="noopener noreferrer" href={GITHUB_LINK}>
                     <IconButton edge="start">
                       <GithubIcon />
                     </IconButton>

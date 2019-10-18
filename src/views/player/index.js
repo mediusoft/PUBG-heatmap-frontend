@@ -55,11 +55,7 @@ export const Player = ({ match }) => {
   if (loading) return <Spinner title="Loading player data..." />;
   if (error) return <p>An error occurred :(</p>;
 
-  if (
-    !data ||
-    !data.player ||
-    (isEmpty(data.player.matches) && !data.player.rateLimitReset)
-  ) {
+  if (!data || !data.player || (isEmpty(data.player.matches) && !data.player.rateLimitReset)) {
     return <PlayerNotFound match={match} />;
   }
 
@@ -83,14 +79,7 @@ export const Player = ({ match }) => {
 
       <CardContent>
         <Grid container justify="center" alignItems="center">
-          <Grid
-            item
-            justify="center"
-            alignItems="center"
-            spacing={2}
-            container
-            xs={12}
-          >
+          <Grid item justify="center" alignItems="center" spacing={2} container xs={12}>
             <Typography variant="h5">{player.name}</Typography>
             <Tooltip interactive title="Bookmark">
               <Bookmark
@@ -104,9 +93,7 @@ export const Player = ({ match }) => {
 
           <Grid justify="center" container item alignItems="center" xs={12}>
             <Typography paragraph />
-            {player.rateLimitReset && (
-              <RateLimited player={player} onUnRateLimited={refetch} />
-            )}
+            {player.rateLimitReset && <RateLimited player={player} onUnRateLimited={refetch} />}
           </Grid>
         </Grid>
         <Grid container justify="space-between">
@@ -129,12 +116,7 @@ export const Player = ({ match }) => {
             matches={matchTypes["4"]}
           />
           {hasCustom && (
-            <MatchesList
-              col={3}
-              header="Custom"
-              baseUrl={match.url}
-              matches={matchTypes.c}
-            />
+            <MatchesList col={3} header="Custom" baseUrl={match.url} matches={matchTypes.c} />
           )}
         </Grid>
       </CardContent>
