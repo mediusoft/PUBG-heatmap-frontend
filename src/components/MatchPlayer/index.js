@@ -1,17 +1,37 @@
 import React from "react";
 import { xor, union, difference, merge, cloneDeep, set } from "lodash";
 import { Grid, Card, CardContent, Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import * as Options from "./Options";
 import Map from "./Map";
 import Roster from "./Roster/index";
 import TimeTracker from "./Time/TimeTracker";
 import { TimeSlider } from "./Time/TimeSlider";
-import { MapSettings } from "./map-settings";
+import MapSettings from "./map-settings";
 import MatchInfo from "./MatchInfo";
 
-// -----------------------------------------------------------------------------
-// Styled Components -----------------------------------------------------------
-// -----------------------------------------------------------------------------
+const styles = {
+  scrollbar: {
+    "&::-webkit-scrollbar": {
+      width: "10px"
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundImage:
+        "-webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.44, rgb(254, 195, 62)), color-stop(0.5, rgb(239, 168, 40)), color-stop(0.86, rgb(239, 168, 40)))",
+      borderRadius: "10px"
+    },
+    "&::-webkit-scrollbar-track": {
+      boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 6px inset",
+      background: "rgba(0, 0, 0, 0)",
+      borderRadius: "10px"
+    }
+  },
+  sideBar: {
+    background: "inherit",
+    overflowY: "auto",
+    maxHeight: "80vh"
+  }
+};
 
 class MatchPlayer extends React.Component {
   constructor(props) {
@@ -127,11 +147,11 @@ class MatchPlayer extends React.Component {
   // -------------------------------------------------------------------------
 
   render() {
-    const { match, rawTelemetry, telemetry, rosters, globalState } = this.props;
+    const { match, classes, rawTelemetry, telemetry, rosters, globalState } = this.props;
     const { mapSize, getAllUntillMsSinceEpoch, options, setOption, prevPlayerName } = this.state;
     return (
       <Options.Context.Provider value={{ options, setOption }}>
-        <CardContent style={{ padding: "35px" }}>
+        <CardContent>
           <TimeTracker
             options={options}
             getAllUntillMsSinceEpoch={getAllUntillMsSinceEpoch}
@@ -140,48 +160,46 @@ class MatchPlayer extends React.Component {
             telemetry={telemetry}
             render={({ msSinceEpoch, timeControls, currentTelemetry }) => (
               <Grid container id="MatchContainer" justify="center" spacing={3}>
-                <Grid md={3} item>
-                  <Card raised style={{ overflowY: "auto", height: "80vh" }}>
-                    <CardContent>
-                      <Grid
-                        container
-                        alignItems="flex-start"
-                        alignContent="flex-start"
-                        item
-                        xs={12}
-                        spacing={1}
-                      >
-                        <Grid item xs={12}>
-                          <Card>
-                            <MatchInfo
-                              match={match}
-                              marks={this.marks}
-                              rawTelemetry={rawTelemetry}
-                              playerName={prevPlayerName}
-                            />
-                          </Card>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <Card style={{ width: "100%", overflow: "initial" }}>
-                            <CardContent>
-                              <TimeSlider
-                                value={msSinceEpoch}
-                                stopAutoplay={timeControls.stopAutoplay}
-                                onChange={timeControls.setMsSinceEpoch}
-                                durationSeconds={match.durationSeconds + 5}
-                                globalState={globalState}
-                                options={options}
-                              />
-                            </CardContent>
-                          </Card>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <Card>
-                            <MapSettings />
-                          </Card>
-                        </Grid>
+                <Grid xs={12} md={3} item>
+                  <Card className={`${classes.sideBar} ${classes.scrollbar}`} raised>
+                    <Grid
+                      container
+                      alignItems="flex-start"
+                      alignContent="flex-start"
+                      item
+                      xs={12}
+                      spacing={1}
+                    >
+                      <Grid item xs={12}>
+                        <Card>
+                          <MatchInfo
+                            match={match}
+                            marks={this.marks}
+                            rawTelemetry={rawTelemetry}
+                            playerName={prevPlayerName}
+                          />
+                        </Card>
                       </Grid>
-                    </CardContent>
+                      <Grid item xs={12}>
+                        <Card style={{ width: "100%", overflow: "initial" }}>
+                          <CardContent>
+                            <TimeSlider
+                              value={msSinceEpoch}
+                              stopAutoplay={timeControls.stopAutoplay}
+                              onChange={timeControls.setMsSinceEpoch}
+                              durationSeconds={match.durationSeconds + 5}
+                              globalState={globalState}
+                              options={options}
+                            />
+                          </CardContent>
+                        </Card>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Card>
+                          <MapSettings />
+                        </Card>
+                      </Grid>
+                    </Grid>
                   </Card>
                 </Grid>
                 <Grid container justify="center" id="MapContainer" item md={5}>
@@ -199,21 +217,23 @@ class MatchPlayer extends React.Component {
                   </Card>
                 </Grid>
 
-                <Grid md={3} item>
-                  <Card raised style={{ overflowY: "scroll", height: "80vh" }}>
-                    <CardContent>
-                      <Typography align="center" variant="h6">
-                        Name / Kills / Damage
-                      </Typography>
-                      <Grid container direction="column" justify="flex-start" spacing={1}>
-                        <Roster
-                          match={match}
-                          telemetry={currentTelemetry}
-                          rosters={rosters}
-                          marks={this.marks}
-                        />
-                      </Grid>
-                    </CardContent>
+                <Grid xs={12} md={3} item>
+                  <Card
+                    className={`${classes.sideBar} ${classes.scrollbar}`}
+                    raised
+                    style={{ overflowY: "scroll", height: "80vh" }}
+                  >
+                    <Typography align="center" variant="h6">
+                      Name / Kills / Damage
+                    </Typography>
+                    <Grid container direction="column" justify="flex-start" spacing={1}>
+                      <Roster
+                        match={match}
+                        telemetry={currentTelemetry}
+                        rosters={rosters}
+                        marks={this.marks}
+                      />
+                    </Grid>
                   </Card>
                 </Grid>
               </Grid>
@@ -225,4 +245,4 @@ class MatchPlayer extends React.Component {
   }
 }
 
-export default MatchPlayer;
+export default withStyles(styles)(MatchPlayer);
