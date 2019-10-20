@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   List,
   Icon,
-  ListSubheader,
   ListItemIcon,
   ListItem,
   ListItemText,
