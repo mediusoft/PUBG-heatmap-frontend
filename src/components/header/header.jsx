@@ -14,13 +14,15 @@ import {
   ListItemText,
   Icon,
   ButtonBase,
-  Badge
+  Badge,
+  Avatar
 } from "@material-ui/core";
 import { Context } from "contexts/theme-context";
 import { GithubIcon, AboutIcon } from "components/svg-icons";
 import history from "browser-history";
 import { makeStyles } from "@material-ui/core/styles";
 import { GITHUB_LINK } from "config";
+import logo from "assets/logo.png";
 
 const useStyles = makeStyles({
   badge: {
@@ -28,7 +30,8 @@ const useStyles = makeStyles({
       right: "-12px",
       top: "3px"
     }
-  }
+  },
+  logo: { marginRight: "5px" }
 });
 export const Header = () => {
   const classes = useStyles();
@@ -60,17 +63,10 @@ export const Header = () => {
               }
             >
               <Toolbar>
-                <Hidden smDown>
-                  <Badge color="secondary" badgeContent="α" className={classes.badge}>
-                    <Typography variant="h5">Pubgheatmap.net</Typography>
-                  </Badge>
-                </Hidden>
-
-                <Hidden mdUp>
-                  <Badge color="secondary" badgeContent="α" className={classes.badge}>
-                    <Typography variant="h5">Pubgheatmap</Typography>
-                  </Badge>
-                </Hidden>
+                <Badge color="secondary" badgeContent="α" className={classes.badge}>
+                  <Avatar className={classes.logo} src={logo} />
+                  <Typography variant="h5">PUBGheatmap</Typography>
+                </Badge>
               </Toolbar>
             </ButtonBase>
           </Grid>

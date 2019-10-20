@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import headerImg from "assets/pubg_erangel.png";
+import coverImg from "assets/home_cover.png";
 import { SHARDS } from "config";
 import history from "browser-history";
 import {
@@ -154,7 +154,7 @@ export function Home() {
                         <span
                           className={classes.imageSrc}
                           style={{
-                            backgroundImage: `url(${headerImg})`
+                            backgroundImage: `url(${coverImg})`
                           }}
                         />
                         <span className={classes.imageBackdrop} />
