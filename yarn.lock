@@ -2095,6 +2095,11 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+autobind-decorator@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-2.4.0.tgz#ea9e1c98708cf3b5b356f7cf9f10f265ff18239c"
+  integrity sha512-OGYhWUO72V6DafbF8PM8rm3EPbfuyMZcJhtm5/n26IDwO18pohE4eNazLoCGhPiXOCD0gEGmrbU3849QvM8bbw==
+
 autoprefixer@^9.6.1:
   version "9.6.1"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.6.1.tgz#51967a02d2d2300bb01866c1611ec8348d355a47"
@@ -8257,6 +8262,11 @@ popper.js@^1.14.1:
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.15.0.tgz#5560b99bbad7647e9faa475c6b8056621f5a4ff2"
   integrity sha512-w010cY1oCUmI+9KwwlWki+r5jxKfTFDVoadl7MSrIujHU5MJ5OR6HTDj6Xo8aoR/QsA56x8jKjA59qGH4ELtrA==
 
+popper.js@^1.16.0:
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
+  integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
+
 portfinder@^1.0.9:
   version "1.0.24"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.24.tgz#11efbc6865f12f37624b6531ead1d809ed965cfa"
@@ -9373,6 +9383,14 @@ react-markdown@4.2.2:
     unist-util-visit "^1.3.0"
     xtend "^4.0.1"
 
+react-player-controls@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-player-controls/-/react-player-controls-1.1.0.tgz#7e2eb3319db2567994a56c0e4b6d51fccfb4b5f4"
+  integrity sha512-qEsKtljmaQD7satvlG6maTOMVw/ekP4F+Obe8ahTkwJEfO+NdollbFlFFsIFro+btMawfydpgneXW0aKEXFy9A==
+  dependencies:
+    autobind-decorator "^2.4.0"
+    prop-types "^15.6.2"
+
 react-reconciler@^0.22.1:
   version "0.22.2"
   resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.22.2.tgz#e8a10374fec8fee7c5cd0cf3cd05626f1b134d3e"
@@ -9489,6 +9507,11 @@ react-transition-group@^4.3.0:
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
+
+react-video-seek-slider@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-video-seek-slider/-/react-video-seek-slider-2.1.2.tgz#4beffefcf4b1518dbcd2d0814f33d4472106ed0b"
+  integrity sha512-nZq6GLAK+hPeJgS87LLTkGjM4tNrWUw9yLSvSaKIor50PfEShqRyd1xBowwyNE4siQ22wEJlyUXKh9h249oT/w==
 
 react@16.10.1:
   version "16.10.1"
@@ -10880,6 +10903,13 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+tippy.js@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-5.1.0.tgz#80c99a79f005767008a799bd354c36e2b53c87db"
+  integrity sha512-OHIF/a4tWOzhwSyuXR6ZuADYUHOohXQDXceONcRjLBUzEcdt2lAIqVeQflmCczkZ0Q4g1G5ihezx7kfL/lNylg==
+  dependencies:
+    popper.js "^1.16.0"
 
 tmp@^0.0.33:
   version "0.0.33"

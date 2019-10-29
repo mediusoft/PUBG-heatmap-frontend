@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const MapSettings = ({ width }) => {
+const MapSettings = ({ width }) => {
   const {
     options: { settings },
     setOption

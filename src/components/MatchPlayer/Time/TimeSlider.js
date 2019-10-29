@@ -1,8 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import "rc-slider/assets/index.css";
-import { Grid, Icon, Slider } from "@material-ui/core";
+import { Grid, Icon, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { VideoSeekSlider } from "react-video-seek-slider";
+import "./Slider.css";
 
 const getDurationFormat = ms => {
   const minutes = Math.floor(ms / 1000 / 60);
@@ -11,129 +12,57 @@ const getDurationFormat = ms => {
   return timeText;
 };
 
-const TimePositionedElement = styled.div.attrs({
-  style: ({ value, durationSeconds }) => ({
-    left: `${(value / (durationSeconds * 1000)) * 100}%`
-  })
-});
-
-const HoverableTimePositionedElement = TimePositionedElement`
-    &:hover:before {
-        display: block;
-        position: absolute;
-        font-size: 12px;
-        top: -35px;
-        background-color: white;
-        white-space: nowrap;
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        transform: translateX(-50%);
-        background: #F7F7F7;
-        padding: 2px 6px;
-    }
-`;
-
-const KillMarker = styled(HoverableTimePositionedElement)`
-    position: absolute;
-    margin-left: -6px;
-    width: 12px;
-    text-align: center;
-    height: ${props => (props.count > 1 ? 10 : 10)}px;
-    background: linear-gradient(to right,
-        transparent 0%,
-        transparent calc(50% - 0.41px),
-        ${props => props.color} calc(50% - 0.8px),
-        ${props => props.color} calc(50% + 0.8px),
-        transparent calc(50% + 0.41px),
-        transparent 100%
+const TogglePlayButton = ({ autoplay, toggleAutoplay }) => {
+  if (autoplay) {
+    return (
+      <IconButton size="small" onClick={toggleAutoplay}>
+        <Icon fontSize="small">pause</Icon>
+      </IconButton>
     );
-
-    &:after {
-        content: "${props => (props.count > 1 ? `(${props.count})` : "")}";
-        color: ${props => props.color};
-        display: block;
-        top: 9px;
-        position: absolute;
-        text-align: center;
-        font-size: 11px;
-    }
-
-    &:hover:before {
-        content: "${props => props.victimNames}";
-    }
-`;
-
-const useStyles = makeStyles({
-  slider: {
-    margin: "0px"
-    // width: "33vh"
   }
-});
+  return (
+    <IconButton size="small" onClick={toggleAutoplay}>
+      <Icon fontSize="small">play_arrow</Icon>
+    </IconButton>
+  );
+};
 
 export const TimeSlider = ({
   value,
-  stopAutoplay,
-  onChange,
   durationSeconds,
-  globalState,
-  options
+  timeControls: { autoplay, toggleAutoplay, autoplaySpeed, setAutoplaySpeed, setMsSinceEpoch }
 }) => {
-  const classes = useStyles();
-
-  const groupedKills =
-    globalState &&
-    globalState.kills.reduce((acc, kill, idx) => {
-      if (idx === 0) return [[kill]];
-
-      const [previousKill] = acc[acc.length - 1];
-      const shouldGroupWithPrevious = kill.msSinceEpoch - previousKill.msSinceEpoch < 1000;
-
-      if (shouldGroupWithPrevious) {
-        acc[acc.length - 1].push(kill);
-      } else {
-        acc.push([kill]);
-      }
-
-      return acc;
-    }, null);
-
-  let marks;
-
-  if (groupedKills)
-    marks = groupedKills.map(kills => ({
-      value: kills[0].msSinceEpoch,
-      label: (
-        <KillMarker
-          key={kills[0].msSinceEpoch}
-          value={kills[0].msSinceEpoch}
-          count={kills.length}
-          durationSeconds={durationSeconds}
-          color={options.colors.roster.dead}
-          victimNames={kills.map(k => k.victimName).join(", ")}
-        />
-      )
-    }));
-
   return (
-    <Grid container item spacing={2} direction="row" alignItems="center" justify="space-between">
-      <Grid item xs={1}>
-        <Icon>access_time</Icon>
-      </Grid>
-      <Grid item xs={10}>
-        <Slider
-          color="secondary"
-          className={classes.slider}
+    <Grid container item direction="row" alignItems="center" justify="space-between">
+      <Grid item xs={12}>
+        <VideoSeekSlider
+          className="slider"
           min={1000}
-          max={durationSeconds * 1000}
-          step={100}
-          marks={marks && marks}
-          value={value}
-          onChange={(_, val) => onChange(val)}
-          aria-labelledby="discrete-slider-always"
-          onChangeCommitted={stopAutoplay}
-          valueLabelDisplay="on"
-          valueLabelFormat={getDurationFormat(value)}
+          max={durationSeconds}
+          currentTime={value / 1000}
+          isThumbActive={false}
+          limitTimeTooltipBySides
+          onChange={time => {
+            setMsSinceEpoch(time * 1000);
+          }}
+          offset={0}
+          secondsPrefix="00:00:"
+          minutesPrefix=""
         />
+        <div style={{ display: "block" }}>
+          <TogglePlayButton toggleAutoplay={toggleAutoplay} autoplay={autoplay} />
+          <IconButton size="small" onClick={() => setAutoplaySpeed(autoplaySpeed - 1)}>
+            <Icon fontSize="small">fast_rewind</Icon>
+          </IconButton>
+          <span style={{ padding: "1px" }}>{autoplaySpeed}x</span>
+          <IconButton size="small" onClick={() => setAutoplaySpeed(autoplaySpeed + 1)}>
+            <Icon fontSize="small">fast_forward</Icon>
+          </IconButton>
+          <div style={{ float: "right" }}>
+            <span>{`${getDurationFormat(value)} `}</span>/
+            <span>{` ${getDurationFormat(durationSeconds * 1000)}`}</span>
+          </div>
+        </div>
       </Grid>
     </Grid>
   );

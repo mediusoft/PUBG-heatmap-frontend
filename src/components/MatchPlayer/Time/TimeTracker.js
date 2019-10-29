@@ -3,7 +3,7 @@ import { clamp } from "lodash";
 
 class TimeTracker extends React.Component {
   state = {
-    autoplaySpeed: 6,
+    autoplaySpeed: 10,
     msSinceEpoch: 1000,
     autoplay: false
   };
@@ -13,9 +13,6 @@ class TimeTracker extends React.Component {
   clampMsSinceEpoch = val => clamp(val, 1000, this.props.durationSeconds * 1000);
 
   setMsSinceEpoch = val => {
-    const { setGettingAll } = this.props;
-    setGettingAll(true);
-
     this.setState({
       msSinceEpoch: this.clampMsSinceEpoch(val)
     });
@@ -148,17 +145,12 @@ class TimeTracker extends React.Component {
   };
 
   render() {
-    const { telemetry, getAllUntillMsSinceEpoch, setGettingAll } = this.props;
+    const { telemetry } = this.props;
     const { msSinceEpoch, autoplay, autoplaySpeed } = this.state;
 
     let currentTelemetry;
     if (telemetry) {
-      if (getAllUntillMsSinceEpoch) {
-        currentTelemetry = telemetry.stateBefore(msSinceEpoch);
-        setGettingAll(false);
-      } else {
-        currentTelemetry = telemetry.stateAt(msSinceEpoch);
-      }
+      currentTelemetry = telemetry.stateAt(msSinceEpoch);
     }
 
     const renderProps = {
