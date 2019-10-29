@@ -168,7 +168,6 @@ class Loadout extends PureComponent {
 
     return (
       <LoadoutWrapper>
-        <CategoryHeader>Loadout</CategoryHeader>
         <WeaponsList weapons={weapons} />
         <EquipmentIcons equipment={equipment} />
       </LoadoutWrapper>

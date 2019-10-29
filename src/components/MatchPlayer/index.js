@@ -111,10 +111,6 @@ class MatchPlayer extends React.Component {
     const localOptions = JSON.parse(localStorage.getItem(Options.STORAGE_KEY) || "{}");
     const options = merge(Options.DEFAULT_OPTIONS, localOptions);
     const setOption = (key, val) => {
-      // TODO : think again
-      if (key === "settings.isHeatmapActive" && val) {
-        this.setGettingAll(val);
-      }
       this.setState(prevState => {
         const newOptions = cloneDeep(prevState.options);
         set(newOptions, key, val);

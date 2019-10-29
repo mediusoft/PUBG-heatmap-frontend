@@ -1,7 +1,6 @@
 import React from "react";
 import "rc-slider/assets/index.css";
 import { Grid, Icon, IconButton } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
 import { VideoSeekSlider } from "react-video-seek-slider";
 import "./Slider.css";
 
@@ -30,7 +29,14 @@ const TogglePlayButton = ({ autoplay, toggleAutoplay }) => {
 export const TimeSlider = ({
   value,
   durationSeconds,
-  timeControls: { autoplay, toggleAutoplay, autoplaySpeed, setAutoplaySpeed, setMsSinceEpoch }
+  timeControls: {
+    autoplay,
+    toggleAutoplay,
+    autoplaySpeed,
+    stopAutoplay,
+    setAutoplaySpeed,
+    setMsSinceEpoch
+  }
 }) => {
   return (
     <Grid container item direction="row" alignItems="center" justify="space-between">
@@ -43,6 +49,7 @@ export const TimeSlider = ({
           isThumbActive={false}
           limitTimeTooltipBySides
           onChange={time => {
+            stopAutoplay();
             setMsSinceEpoch(time * 1000);
           }}
           offset={0}

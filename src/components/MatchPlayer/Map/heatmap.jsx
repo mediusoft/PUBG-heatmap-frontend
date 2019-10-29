@@ -4,20 +4,12 @@ import HeatmapFactory from "lib/heatmap-factory";
 import { toScale } from "lib/canvas-math";
 
 const HEATMAP_RADIUS = 15;
-const HEATMAP_MAX_DATA = 2000;
+const HEATMAP_MAX_DATA = 100;
 
-export const HeatMap = ({
-  allLocations,
-  playerLocations,
-  pubgMapSize,
-  mapSize,
-  isHeatmapActive,
-  mapScale,
-  offsetX,
-  offsetY
-}) => {
+export const HeatMap = ({ allLocations, pubgMapSize, mapSize, mapScale, offsetX, offsetY }) => {
   const nodeRef = useRef();
   const [heatmap, setHeatMap] = useState();
+
   useEffect(() => {
     const heatmapInstance = HeatmapFactory.create({
       container: nodeRef.current,
@@ -38,15 +30,19 @@ export const HeatMap = ({
 
   useEffect(() => {
     if (heatmap) {
-      if (allLocations) {
-        heatmap.setData({ data: computeData(allLocations), max: HEATMAP_MAX_DATA });
-      } else {
-        const data = Object.values(playerLocations);
-        heatmap.addData(computeData(data));
+      const locations = Object.values(allLocations);
+      const allPlayer = [];
+      for (let i = 0; i < locations.length; i++) {
+        const location = locations[i];
+        for (let index = 0; index < location.length; index++) {
+          const element = location[index];
+          allPlayer.push(element);
+        }
       }
+      const data = computeData(allPlayer);
+      heatmap.setData({ data, max: HEATMAP_MAX_DATA });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playerLocations, allLocations]);
+  }, [allLocations]);
 
   useEffect(() => {
     if (mapSize) {
@@ -54,7 +50,6 @@ export const HeatMap = ({
       canvas.width = mapSize;
       canvas.height = mapSize;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mapSize]);
 
   return (
@@ -62,7 +57,6 @@ export const HeatMap = ({
       id="HeatMapWrapper"
       style={{
         position: "absolute",
-        visibility: `${isHeatmapActive ? "visible" : "Hidden"}`,
         width: `${mapSize}px`,
         height: `${mapSize}px`,
         transform: `scale(${mapScale})`,

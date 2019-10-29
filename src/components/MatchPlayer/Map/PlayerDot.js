@@ -1,12 +1,13 @@
 import React from "react";
 import { clamp } from "lodash";
 import { Arc, Circle, Group, Text, Label, Tag } from "react-konva";
-import { toScale } from "../../../lib/canvas-math.js";
+import { toScale } from "lib/canvas-math.js";
 
 const getBasePlayerColor = ({ colors }, marks, player) => {
   if (marks.focusedPlayer() === player.name) {
     return colors.dot.focused;
-  } else if (player.teammates.includes(marks.focusedPlayer())) {
+  }
+  if (player.teammates.includes(marks.focusedPlayer())) {
     return colors.dot.teammate;
   }
 
