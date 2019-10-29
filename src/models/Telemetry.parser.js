@@ -357,7 +357,6 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
         right: dps[dpIdx++]
       };
       const locations = [];
-
       for (let i = 0; i < state.length; i++) {
         if (i === pointer.right) {
           // We're on a real datapoint: update pointer for the next range of interpolation
@@ -367,12 +366,12 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
           };
           const currentLocation = getBeforeLocations(i, playerName);
           locations.push(currentLocation);
+          state[i].allLocations[playerName] = [...locations];
         } else {
           // Pointers in between datapoints are identical to each other
           state[i].playerLocations[playerName] = pointer;
+          state[i].allLocations[playerName] = state[i - 1].allLocations[playerName];
         }
-
-        state[i].allLocations[playerName] = [...locations];
       }
     });
 
