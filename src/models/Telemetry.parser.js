@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import moment from "moment";
 import { get, remove, minBy, cloneDeep } from "lodash";
 
@@ -6,6 +7,7 @@ const TRACER_LIFETIME_DECISECONDS = 35;
 const blankIntervalState = () => ({
   players: {},
   playerLocations: {},
+  allLocations: {},
   bluezone: null,
   redzone: null,
   safezone: null,
@@ -26,11 +28,13 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
     if (!startingLocationInitialized) {
       matchData.players.forEach(p => {
         state[0].playerLocations[p.name] = location;
+        state[0].allLocations[p.name] = location;
       });
       startingLocationInitialized = true;
     }
 
     curState.playerLocations[playerName] = location;
+    curState.allLocations[playerName] = location;
   };
 
   const setNewPlayerState = (playerName, newVals) => {
@@ -306,6 +310,40 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
     }
   }
 
+  function linearInterpolation(lowerVal, upperVal, span, idx) {
+    const yDelta = upperVal - lowerVal;
+    const yStep = yDelta / span;
+    return lowerVal + yStep * idx;
+  }
+
+  const getLocation = (interval, playerName, playerLocation) => {
+    // There's no data point to the right, so we just end up with the point to the left
+    if (typeof playerLocation.right === "undefined") {
+      return state[playerLocation.left].playerLocations[playerName];
+    }
+
+    const left = state[playerLocation.left].playerLocations[playerName];
+    const right = state[playerLocation.right].playerLocations[playerName];
+    const span = playerLocation.right - playerLocation.left;
+
+    return {
+      x: linearInterpolation(left.x, right.x, span, interval - playerLocation.left),
+      y: linearInterpolation(left.y, right.y, span, interval - playerLocation.left)
+    };
+  };
+
+  const getBeforeLocations = (interval, playerName) => {
+    const s = state[interval];
+
+    let playerLoc = s.playerLocations[playerName];
+    if (Object.hasOwnProperty.call(s.playerLocations[playerName], "left")) {
+      const curLocation = s.playerLocations[playerName];
+      playerLoc = getLocation(interval, playerName, curLocation);
+    }
+
+    return playerLoc;
+  };
+
   {
     // Step Four (a): Store pointer to known left/right datapoints for player locations
     console.time("Telemetry-locationPointers");
@@ -318,6 +356,7 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
         left: undefined,
         right: dps[dpIdx++]
       };
+      const locations = [];
 
       for (let i = 0; i < state.length; i++) {
         if (i === pointer.right) {
@@ -326,10 +365,14 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
             left: pointer.right,
             right: dps[dpIdx++]
           };
+          const currentLocation = getBeforeLocations(i, playerName);
+          locations.push(currentLocation);
         } else {
           // Pointers in between datapoints are identical to each other
           state[i].playerLocations[playerName] = pointer;
         }
+
+        state[i].allLocations[playerName] = [...locations];
       }
     });
 
@@ -419,5 +462,6 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
     }
   }
 
+  console.log("state", state);
   return { state, globalState };
 }

@@ -68,79 +68,6 @@ export default function Telemetry(state) {
     return s;
   };
 
-  const getBeforeLocations = interval => {
-    console.log("getsasa", interval);
-    const { playerLocations } = state[interval];
-    const playerNames = Object.keys(playerLocations);
-    const nameCounts = playerNames.length;
-    const locations = [];
-
-    for (let i = 10; i < interval - 1; i += 6) {
-      const s = state[i];
-
-      for (let j = 0; j < nameCounts; j++) {
-        const name = playerNames[j];
-        let playerLoc = s.playerLocations[name];
-        if (Object.hasOwnProperty.call(s.playerLocations[name], "left")) {
-          const curLocation = s.playerLocations[name];
-          playerLoc = getLocation(i, name, curLocation);
-        }
-        locations.push(playerLoc);
-      }
-    }
-
-    return locations;
-  };
-
-  const stateBefore = msSinceEpoch => {
-    const interval = Math.floor(msSinceEpoch / 100);
-
-    const allLocations = getBeforeLocations(interval);
-    const s = state[interval];
-
-    // Overwrite player pointer records with interpolated values. This will generate the correct value
-    // for this interval and replace the pointer record with it so that a re-request of this interval
-    // will not require any computation.
-    forEach(s.players, (player, playerName) => {
-      if (!Object.hasOwnProperty.call(player, "location")) {
-        if (Object.hasOwnProperty.call(s.playerLocations[playerName], "left")) {
-          const curLocation = s.playerLocations[playerName];
-          s.playerLocations[playerName] = getLocation(interval, playerName, curLocation);
-        }
-
-        s.players[playerName] = {
-          ...s.players[playerName],
-          location: s.playerLocations[playerName]
-        };
-        s.playerLocations[playerName] = {
-          ...s.playerLocations[playerName],
-          isAlive: player.health > 0
-        };
-
-        s.allLocations = allLocations;
-      }
-    });
-
-    // Overwrite bluezone records with interpolated values
-    if (Object.hasOwnProperty.call(s.bluezone, "left")) {
-      if (!s.bluezone.right) {
-        s.bluezone = state[s.bluezone.left].bluezone;
-      } else {
-        const left = state[s.bluezone.left].bluezone;
-        const right = state[s.bluezone.right].bluezone;
-        const span = s.bluezone.right - s.bluezone.left;
-
-        s.bluezone = {
-          x: linearInterpolation(left.x, right.x, span, interval - s.bluezone.left),
-          y: linearInterpolation(left.y, right.y, span, interval - s.bluezone.left),
-          radius: linearInterpolation(left.radius, right.radius, span, interval - s.bluezone.left)
-        };
-      }
-    }
-
-    return s;
-  };
-
   const finalRoster = focusedPlayer => {
     const rosters = sortBy(
       groupBy(state.matchEnd.characters, "teamId"),
@@ -155,7 +82,6 @@ export default function Telemetry(state) {
   return {
     state,
     stateAt,
-    stateBefore,
     finalRoster
   };
 }

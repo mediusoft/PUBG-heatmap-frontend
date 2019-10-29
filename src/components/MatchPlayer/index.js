@@ -34,12 +34,12 @@ const styles = {
 };
 
 class MatchPlayer extends React.Component {
+  // eslint-disable-next-line react/sort-comp
   constructor(props) {
     super(props);
 
     this.state = {
       mapSize: 0,
-      getAllUntillMsSinceEpoch: false,
       focusedPlayer: props.playerName,
       // See getDerivedStateFromProps
       prevPlayerName: props.playerName,
@@ -107,16 +107,10 @@ class MatchPlayer extends React.Component {
     window.removeEventListener("resize", this.updateMapSize.bind(this));
   }
 
-  setGettingAll = value => this.setState({ getAllUntillMsSinceEpoch: value });
-
   loadOptions = () => {
     const localOptions = JSON.parse(localStorage.getItem(Options.STORAGE_KEY) || "{}");
     const options = merge(Options.DEFAULT_OPTIONS, localOptions);
     const setOption = (key, val) => {
-      // TODO : think again
-      if (key === "settings.isHeatmapActive" && val) {
-        this.setGettingAll(val);
-      }
       this.setState(prevState => {
         const newOptions = cloneDeep(prevState.options);
         set(newOptions, key, val);
@@ -148,14 +142,12 @@ class MatchPlayer extends React.Component {
 
   render() {
     const { match, classes, rawTelemetry, telemetry, rosters, globalState } = this.props;
-    const { mapSize, getAllUntillMsSinceEpoch, options, setOption, prevPlayerName } = this.state;
+    const { mapSize, options, setOption, prevPlayerName } = this.state;
     return (
       <Options.Context.Provider value={{ options, setOption }}>
         <CardContent>
           <TimeTracker
             options={options}
-            getAllUntillMsSinceEpoch={getAllUntillMsSinceEpoch}
-            setGettingAll={this.setGettingAll}
             durationSeconds={match.durationSeconds + 5}
             telemetry={telemetry}
             render={({ msSinceEpoch, timeControls, currentTelemetry }) => (
@@ -182,11 +174,14 @@ class MatchPlayer extends React.Component {
                       </Grid>
                       <Grid item xs={12}>
                         <Card style={{ width: "100%", overflow: "initial" }}>
-                          <CardContent>
+                          <CardContent style={{ paddingBottom: "16px" }}>
                             <TimeSlider
-                              value={msSinceEpoch}
-                              stopAutoplay={timeControls.stopAutoplay}
+                              timeControls={timeControls}
+                              toggleAutoplay={timeControls.toggleAutoplay}
+                              autoplaySpeed={timeControls.autoplaySpeed}
+                              setAutoplaySpeed={timeControls.setAutoplaySpeed}
                               onChange={timeControls.setMsSinceEpoch}
+                              value={msSinceEpoch}
                               durationSeconds={match.durationSeconds + 5}
                               globalState={globalState}
                               options={options}
