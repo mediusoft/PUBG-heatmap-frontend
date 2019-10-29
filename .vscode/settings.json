@@ -40,5 +40,6 @@
         "navigation": "routes",
         "boot": "core"
     },
-    "react-native.packager.port": 19001
+    "react-native.packager.port": 19001,
+    "docker.defaultRegistryPath": "orkhanrzazade"
 }
