@@ -143,7 +143,7 @@ export function Home() {
                   <Link
                     style={{ width: "100%" }}
                     className={!!error && classes.disabled}
-                    href={sm ? `/${sm.playerName}/${sm.shardId}/${sm.id}` : ""}
+                    href={!error && sm ? `/${sm.playerName}/${sm.shardId}/${sm.id}` : ""}
                   >
                     <Grid item container justify="center">
                       <ButtonBase
