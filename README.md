@@ -136,28 +136,34 @@ Senior software developer with more than 5 years of experience. Passionate about
 4. Push to the branch (git push origin my-new-feature)
 5. Create new Pull Request
 
-### Available Scripts
+## TODO
 
-### `npm start`
+**Order Placement System**
+* [x]  Basic Frontend
+  * [x] Production-ready Frontend (styles etc.)
+  * [x] Rewrite to Apollo Client
 
-Runs the app in the development mode.
+**Order Management System**
 
-### `npm test`
+* [ ] Login
+  * [ ] Full security with Auth0
+* [x]  Basic Frontend
+  * [ ] Production-ready Frontend (styles etc.)
+* [x]  Working Backend
 
-Launches the test runner in the interactive watch mode.
+**Documentation**
 
-### `npm run build`
+* [x] Guides
+  * [x] Development
+  * [ ] Production
+  * [ ] Security
+  * [ ] Deployment
 
-Builds the app for production to the `build` folder.
+**Other**
 
-### `npm-install`
+* [ ] Release a public demo
 
-Installs all dependencies
-
-### `pretty-all`
-
-Uses `prettier` and makes sure that your codes are pretty
-
+(?) - unsure.
 <br />
 
 ### Changelog
