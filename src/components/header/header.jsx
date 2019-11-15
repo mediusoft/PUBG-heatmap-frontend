@@ -63,7 +63,7 @@ export const Header = () => {
               }
             >
               <Toolbar>
-                <Badge color="secondary" badgeContent="α" className={classes.badge}>
+                <Badge color="secondary" badgeContent="β" className={classes.badge}>
                   <Avatar className={classes.logo} src={logo} />
                   <Typography variant="h5">PUBGheatmap</Typography>
                 </Badge>
