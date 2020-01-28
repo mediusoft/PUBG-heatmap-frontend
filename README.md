@@ -11,6 +11,18 @@
   </a>
   <a target="_blank" rel="noopener noreferrer" href="https://camo.githubusercontent.com/c83b8df34339bd302b7fd3fbb631f99ba25f87f8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d70726574746965722d6666363962342e737667"><img src="https://camo.githubusercontent.com/c83b8df34339bd302b7fd3fbb631f99ba25f87f8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d70726574746965722d6666363962342e737667" alt="Code style" data-canonical-src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" style="max-width:100%;"></a>
   <a href="#" rel="nofollow"><img src="https://camo.githubusercontent.com/d9ce827af4ec2b7b3c52ce4595bbb354d8b21405/68747470733a2f2f6261646765732e66726170736f66742e636f6d2f6f732f76312f6f70656e2d736f757263652e7376673f763d313032" alt="Open Source Love" data-canonical-src="https://badges.frapsoft.com/os/v1/open-source.svg?v=102" style="max-width:100%;"></a>
+  
+_Found it useful? Want more updates?_
+
+[**Show your support by giving a :star:**](https://github.com/piotrwitek/react-redux-typescript-guide/stargazers)
+
+<a href="https://www.buymeacoffee.com/mhoz0yJ">
+  <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me a Coffee">
+</a>
+<a href="https://www.patreon.com/orkhan_rzazade">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" alt="Become a Patron" width="160">
+</a>
+
 </p>
 
 <p align="center">
