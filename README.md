@@ -6,7 +6,7 @@
 
 <h2 align="center" style="border-bottom: none !important; margin-bottom: 5px !important;"><a href="https://pubgheatmap.net">An analytic tool for Player Unknown's Battle Ground - PUBG</a></h2>
 <p align="center">
-  <a target="_blank" rel="noopener noreferrer" href="https://github.com/ORzazade/PUBG-heatmap-frontend/blob/dev/LICENSE">
+  <a target="_blank" rel="noopener noreferrer" href="https://github.com/mediusoft/PUBG-heatmap-frontend/blob/dev/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" />
   </a>
   <a target="_blank" rel="noopener noreferrer" href="https://camo.githubusercontent.com/c83b8df34339bd302b7fd3fbb631f99ba25f87f8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d70726574746965722d6666363962342e737667"><img src="https://camo.githubusercontent.com/c83b8df34339bd302b7fd3fbb631f99ba25f87f8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d70726574746965722d6666363962342e737667" alt="Code style" data-canonical-src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" style="max-width:100%;"></a>
@@ -14,7 +14,7 @@
   
 _Found it useful? Want more updates?_
 
-[**Show your support by giving a :star:**](https://github.com/piotrwitek/react-redux-typescript-guide/stargazers)
+[**Show your support by giving a :star:**](https://github.com/mediusoft/PUBG-heatmap-frontend/stargazers)
 
 <a href="https://www.buymeacoffee.com/mhoz0yJ">
   <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me a Coffee">
@@ -26,7 +26,7 @@ _Found it useful? Want more updates?_
 </p>
 
 <p align="center">
-This app provides the front end which includes the heatmap and rendering of the 2D replay on canvas with React. See also <a href="https://github.com/ORzazade/PUBG-heatmap-backend">pubgheatmap/backend</a>.
+This app provides the front end which includes the heatmap and rendering of the 2D replay on canvas with React. See also <a href="https://github.com/mediusoft/PUBG-heatmap-backend">pubgheatmap/backend</a>.
 </p>
 
 <br />
@@ -34,6 +34,10 @@ This app provides the front end which includes the heatmap and rendering of the 
 > ✨ **Note:** This library is based on [pubgsh/client](https://github.com/pubgsh/client) with more features and cooler designs. I’m happy to consider suggestions, pull requests and bug reports.
 
 <br />
+
+### Screenshot
+
+ <img src="./src/assets/screen_record.gif" alt="pubg heat map" >
 
 ### About
 
