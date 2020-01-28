@@ -8,7 +8,6 @@
         "editor.formatOnSave": false,
     },
     // available through eslint plugin in vscode
-    "eslint.autoFixOnSave": true,
     "eslint.alwaysShowStatus": true,
     "eslint.packageManager": "yarn",
     "javascript.format.enable": false,
@@ -41,5 +40,8 @@
         "boot": "core"
     },
     "react-native.packager.port": 19001,
-    "docker.defaultRegistryPath": "orkhanrzazade"
+    "docker.defaultRegistryPath": "orkhanrzazade",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
 }
