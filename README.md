@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://reactjs.org">
-<img src="https://i1.wp.com/storage.googleapis.com/blog-images-backup/1*c1duI8rwtQygnJem9RyYUg.png?resize=700%2C235&ssl=1" width="250" />
+<img src="./src/assets/logo.png" width="100" alt="pubg heatmap" />
 </a>
 </p>
 
