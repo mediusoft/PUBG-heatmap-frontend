@@ -8,6 +8,11 @@ const Tracer = ({ pubgMapSize, mapSize, mapScale, players, tracer, msSinceEpoch 
   if (!tracer) return null;
   const { attackerName, victimName, startInterval, endInterval } = tracer;
 
+  if (!players[victimName] || !players[attackerName]) {
+    // See the comment on Telemetry.parser.js line 38
+    return null
+}
+
   const victimLoc = players[victimName].location;
   const attackerLoc = players[attackerName].location;
 

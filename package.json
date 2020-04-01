@@ -8,7 +8,6 @@
     "@material-ui/icons": "4.4.3",
     "@material-ui/lab": "4.0.0-alpha.28",
     "apollo-boost": "0.4.4",
-    "express": "4.17.1",
     "fg-loadcss": "2.1.0",
     "graphql": "14.5.8",
     "history": "4.10.1",
@@ -43,7 +42,6 @@
     "eslint-plugin-react": "7.15.1",
     "eslint-plugin-react-hooks": "2.1.1",
     "flow-bin": "0.108.0",
-    "nodemon": "1.19.3",
     "prettier": "1.18.2",
     "prop-types": "15.7.2",
     "react-scripts": "^3.3.0"

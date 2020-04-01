@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Heatmap from "heatmap.js/build/heatmap.js";
 import { toScale } from "../../../lib/canvas-math.js";
+
 const MAP_SIZES = {
   Erangel_Main: 816000,
   Baltic_Main: 816000,
   Desert_Main: 816000,
   Savage_Main: 408000,
-  DihorOtok_Main: 612000
+  DihorOtok_Main: 612000,
+  Summerland_Main: 204000
 };
 
 class ReactHeatmap extends Component {
@@ -31,7 +33,7 @@ class ReactHeatmap extends Component {
 
   setData(max, data) {
     this.heatmap.setData({
-      max: max,
+      max,
       data: this.computeData(data)
     });
   }
@@ -41,7 +43,7 @@ class ReactHeatmap extends Component {
     const pubgMapSize = MAP_SIZES[mapName];
 
     if (this.props.unit === "percent") {
-      let container = {};
+      const container = {};
       container.width = ReactDOM.findDOMNode(this).offsetWidth;
       container.height = ReactDOM.findDOMNode(this).offsetHeight;
       const at = data.map(function(values, index) {
@@ -51,10 +53,10 @@ class ReactHeatmap extends Component {
         };
       });
       return at;
-    } else {
-      return data;
     }
+    return data;
   }
+
   render() {
     const { mapName, mapSize } = this.props;
     console.log("mapSize", mapSize);
@@ -67,7 +69,7 @@ class ReactHeatmap extends Component {
           postition: "absolute",
           height: `${mapSize || 200}px`
         }}
-      ></div>
+      />
     );
   }
 }

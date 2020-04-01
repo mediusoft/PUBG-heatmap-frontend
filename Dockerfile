@@ -1,24 +1,29 @@
-FROM mhart/alpine-node:8.11.1
+FROM node:13.8.0-alpine as development
 
-RUN npm config set unsafe-perm true
-RUN npm install --global yarn
-RUN npm config set unsafe-perm false
+ARG REACT_APP_API
+ARG REACT_APP_GA
+ENV REACT_APP_API $REACT_APP_API
+ENV REACT_APP_GA $REACT_APP_GA
 
-RUN apk add --no-cache python git make gcc g++ bash curl
+WORKDIR /usr/src/app
 
-ADD package.json /tmp/package.json
-ADD yarn.lock /tmp/yarn.lock
-RUN cd /tmp && yarn install
-RUN mkdir -p /app && cp -a /tmp/node_modules /app/
+COPY package.json ./
+COPY yarn.lock ./
 
-RUN apk del python git make gcc g++
-
-WORKDIR /app
-ADD . ./
-RUN yarn run build
-
-RUN tar -cf build.tar build
+RUN yarn --production=false
 
 COPY . .
 
-EXPOSE 3000
+RUN yarn build
+
+FROM nginx:1.17.8-alpine as production
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+COPY --from=development /usr/src/app/build /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
+
+# Healthcheck tool. Set WAIT_HOSTS environment variable in docker-compose
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.2/wait /wait
+RUN chmod +x /wait
