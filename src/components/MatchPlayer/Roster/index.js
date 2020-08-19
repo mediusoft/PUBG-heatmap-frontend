@@ -57,7 +57,7 @@ const Roster = ({ telemetry, marks, rosters }) => {
                 <CardContent style={{ padding: "10px" }}>
                   {r.map(playerName => {
                     const p = telemetry.players[playerName];
-
+                    if (!p) return null;
                     return (
                       <PlayerItem
                         key={p.name}

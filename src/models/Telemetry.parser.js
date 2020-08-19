@@ -38,20 +38,19 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
   };
 
   const setNewPlayerState = (playerName, newVals) => {
-    
     if (!curState.players[playerName] && !latestPlayerStates[playerName]) {
       // This captures a scenario where PUBG's matches API doesn't return
       // someone who participated in this match. It will cause incorrect
       // data, but at least it will render.
       curState.players[playerName] = {
-          name: playerName,
-          teammates: [],
-          health: 100,
-          kills: 0,
-          damageDealt: 0,
-          items: [],
-      }
-  }
+        name: playerName,
+        teammates: [],
+        health: 100,
+        kills: 0,
+        damageDealt: 0,
+        items: []
+      };
+    }
     if (!curState.players[playerName]) {
       // TODO: Needs cloneDeep once state holds nested values
       curState.players[playerName] = { ...latestPlayerStates[playerName] };
@@ -144,6 +143,7 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
 
       if (d._T === "LogItemEquip") {
         const characterName = d.character.name;
+        if (!characterName) return;
         const currentItems = curState.players[characterName].items;
 
         setNewPlayerState(characterName, { items: [...currentItems, d.item] });
@@ -151,6 +151,7 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
 
       if (d._T === "LogItemUnequip") {
         const characterName = d.character.name;
+        if (!characterName) return;
         const currentItems = curState.players[characterName].items;
 
         setNewPlayerState(characterName, {
@@ -160,6 +161,7 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
 
       if (d._T === "LogItemAttach") {
         const characterName = d.character.name;
+        if (!characterName) return;
         const currentItems = curState.players[characterName].items;
 
         const updatedItems = currentItems.reduce((prev, item) => {
@@ -181,6 +183,7 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
 
       if (d._T === "LogItemDetach") {
         const characterName = d.character.name;
+        if (!characterName) return;
         const currentItems = curState.players[characterName].items;
 
         const updatedItems = currentItems.reduce((prev, item) => {
@@ -384,7 +387,9 @@ export default function parseTelemetry(matchData, telemetry, focusedPlayerName) 
         } else {
           // Pointers in between datapoints are identical to each other
           state[i].playerLocations[playerName] = pointer;
-          state[i].allLocations[playerName] = state[i - 1].allLocations[playerName];
+          if (i) {
+            state[i].allLocations[playerName] = state[i - 1].allLocations[playerName];
+          }
         }
       }
     });
