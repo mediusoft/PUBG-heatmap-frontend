@@ -219,7 +219,7 @@ class MatchPlayer extends React.Component {
                     style={{ overflowY: "scroll", height: "80vh" }}
                   >
                     <Typography align="center" variant="h6">
-                      Name / Kills / Damage
+                      Name / Kills / Assists / Damage
                     </Typography>
                     <Grid container direction="column" justify="flex-start" spacing={1}>
                       <Roster

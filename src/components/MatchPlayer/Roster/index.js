@@ -27,7 +27,7 @@ const PlayerItem = styled.li`
   overflow: hidden;
   cursor: pointer;
   display: grid;
-  grid-template-columns: 1fr 15px 25px;
+  grid-template-columns: 135px .25fr .25fr .5fr;
   grid-column-gap: 5px;
 
   i {
@@ -73,6 +73,7 @@ const Roster = ({ telemetry, marks, rosters }) => {
                           <Typography variant="body2">{p.name}</Typography>
                         </LightTooltip>
                         <Typography variant="body2">{p.kills}</Typography>
+                        <Typography variant="body2">{p.assists}</Typography>
                         <Typography variant="body2">{Math.round(p.damageDealt)}</Typography>
                       </PlayerItem>
                     );
